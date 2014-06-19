@@ -421,8 +421,10 @@ i {
   font-style: italic;
 }
 blockquote {
-  margin: 0 1.5em;
   position: relative;
+  padding: 1.2rem 0 1.3rem 0;
+  width: 50%;
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; float: left;
 }
 address {
   margin: 0 0 1.5em;
@@ -590,10 +592,10 @@ article {
   background: transparent;
   padding: 0;
   margin-bottom: 2.3rem;
-  text-transform: uppercase;
   letter-spacing: .9px;
   display: inline-block;
   vertical-align: text-top;
+  text-transform: capitalize;
 }
 .title {
   color: #404040;
@@ -627,28 +629,15 @@ article {
   line-height: 2.1rem;
   text-transform: lowercase;
 }
-.the-content blockquote:before,.the-content blockquote:after{
-font-family: FontAwesome;
+.the-content blockquote{
+font-family: FontAwesome,"lft-etica","Segoe UI", Optima, sans-serif;
 font-style: normal;
 font-weight: normal;
 line-height: 1;
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
-content: "\f121";
-display: block;
-position: absolute;
-top: 50%;
-left: 0;
-margin-top: -15px;
-font-size: 26px;
 }
-.the-content blockquote:nth-of-type(even):before,.the-content blockquote:nth-of-type(even):after {
-content: "\f087";
-}
-.the-content blockquote:nth-of-type(odd):after,.the-content blockquote:nth-of-type(even):after {
-right: 0;
-left: inherit;
-}
+
 .the-content-work{
   overflow: hidden;
   float: left;
@@ -915,9 +904,20 @@ and (max-width : 480px) {
   .the-content-text{
     padding: 1.5rem 1rem;
   }
-  .the-content blockquote:before,.the-content blockquote:after{
-    font-size:14px;
+  blockquote{
+    width: 100%;
+    padding:0;
+    text-align: center;
   }
+  .the-content blockquote:before{
+    display: none;
+    /*font-size:14px;*/
+  }
+  /*.the-content blockquote:nth-of-type(even):before {
+    right: inherit;
+    left: 0;
+  }*/
+
 }
 
 /*

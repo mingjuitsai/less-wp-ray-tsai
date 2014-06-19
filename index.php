@@ -68,7 +68,6 @@
 							<section class="the-content-work extend-box">
 								<?php if( have_rows('repeater_video') ): ?>
 								    <?php while( have_rows('repeater_video') ): the_row(); ?>
-								 
 								        <?php 
 								        	$file1 = get_sub_field('object_file_mp4');
 								        	$file2 = get_sub_field('object_file_webm');
@@ -81,7 +80,7 @@
 												<span class="circle"></span><span class="circle"></span><span class="circle"></span>
 											</section>
 											<!-- If destop display video -->
-										        <video id="<?php echo $video_id; ?>" class="the-content-video extend-box" poster="<?php echo $img; ?>" width="" height="auto" autoplay >
+										        <video id="<?php echo $video_id; ?>" class="the-content-video extend-box" poster="<?php echo $img; ?>" width="" height="auto">
 												  <source src="<?php echo $file1; ?>" type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' />
 												  <source src="<?php echo $file2; ?>" type='video/webm;codecs="vp8, vorbis"' />
 												  <source src="<?php echo $file3; ?>" type="video/ogg; codecs=theora,vorbis" />

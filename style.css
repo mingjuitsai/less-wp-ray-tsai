@@ -626,37 +626,27 @@ article {
   line-height: 2.1rem;
   text-transform: lowercase;
 }
-.the-content blockquote:nth-of-type(odd):before {
-width: 0;
-height: 0;
-border-style: solid;
-border-width: 15px 15px 0 0;
-border-color: #242424 transparent transparent transparent;
-content: "";
+.the-content blockquote:before,.the-content blockquote:after{
+font-family: FontAwesome;
+font-style: normal;
+font-weight: normal;
+line-height: 1;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+content: "\f121";
 display: block;
 position: absolute;
 top: 50%;
 left: 0;
 margin-top: -15px;
+font-size: 26px;
 }
-.the-content blockquote:nth-of-type(odd):after {
-width: 0;
-height: 0;
-border-style: solid;
-border-width: 0 0 15px 15px;
-border-color: transparent transparent #242424 transparent;
-content: "";
-display: block;
-position: absolute;
+.the-content blockquote:nth-of-type(even):before,.the-content blockquote:nth-of-type(even):after {
+content: "\f087";
+}
+.the-content blockquote:nth-of-type(odd):after,.the-content blockquote:nth-of-type(even):after {
 right: 0;
-bottom: 50%;
-margin-bottom: -15px;
-}
-.the-content blockquote:nth-of-type(even):before {
-
-}
-.the-content blockquote:nth-of-type(even):after {
-  
+left: inherit;
 }
 .the-content-work{
   overflow: hidden;
@@ -918,7 +908,9 @@ and (max-width : 480px) {
   .the-content-text{
     padding: 1.5rem 1rem;
   }
-  article .the-content p{}
+  .the-content blockquote:before,.the-content blockquote:after{
+    font-size:12px;
+  }
 }
 
 /*

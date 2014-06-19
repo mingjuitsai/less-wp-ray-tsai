@@ -23,7 +23,8 @@ register_nav_menus(
 /*-----------------------------------------------------------------------------------*/
 
 function less_scripts()  { 
-
+	// font awesome
+	wp_enqueue_style( 'fontawesome-style','//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', '10001', 'all' );
 	// theme styles
 	wp_enqueue_style( 'less-style', get_template_directory_uri() . '/style.css', '10000', 'all' );
 	// add jQeury

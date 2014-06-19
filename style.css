@@ -422,6 +422,7 @@ i {
 }
 blockquote {
   margin: 0 1.5em;
+  position: relative;
 }
 address {
   margin: 0 0 1.5em;
@@ -625,7 +626,38 @@ article {
   line-height: 2.1rem;
   text-transform: lowercase;
 }
+.the-content blockquote:nth-of-type(odd):before {
+width: 0;
+height: 0;
+border-style: solid;
+border-width: 15px 15px 0 0;
+border-color: #242424 transparent transparent transparent;
+content: "";
+display: block;
+position: absolute;
+top: 50%;
+left: 0;
+margin-top: -15px;
+}
+.the-content blockquote:nth-of-type(odd):after {
+width: 0;
+height: 0;
+border-style: solid;
+border-width: 0 0 15px 15px;
+border-color: transparent transparent #242424 transparent;
+content: "";
+display: block;
+position: absolute;
+right: 0;
+bottom: 50%;
+margin-bottom: -15px;
+}
+.the-content blockquote:nth-of-type(even):before {
 
+}
+.the-content blockquote:nth-of-type(even):after {
+  
+}
 .the-content-work{
   overflow: hidden;
   float: left;

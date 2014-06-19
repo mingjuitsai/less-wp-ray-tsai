@@ -552,8 +552,8 @@ header nav ul li:hover a {
 }
 .current-menu-item a{}
 .container.header-wrap {
-  padding-top: 10.2rem;
-  padding-bottom: 3.1rem;
+  padding-top: 1.2rem;
+  padding-bottom: 1rem;
 }
 .container.header-wrap:before {
   content: "";

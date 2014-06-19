@@ -55,7 +55,7 @@
 
 					<article class="post">
 							<h3 class="title">
-								<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+								<a target="_blank" href="<?php $object_url = get_field('object_url'); echo $object_url; ?>" title="<?php the_title(); ?>">
 									<?php the_title() ?>
 								</a>
 							</h3>

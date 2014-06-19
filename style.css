@@ -584,6 +584,7 @@ header nav ul li:hover a {
 }
 .main-content{
   padding: 2.5rem 4rem;
+  width: 100%;
 }
 article {
   background: transparent;
@@ -894,6 +895,12 @@ and (max-width : 650px) {
 }
 @media only screen 
 and (max-width : 480px) {
+  .container{
+    width: 90%;
+  }
+  .container.main-content{
+    width: 100%;
+  }
   html{
     font-size: 52%;
   }
@@ -909,7 +916,7 @@ and (max-width : 480px) {
     padding: 1.5rem 1rem;
   }
   .the-content blockquote:before,.the-content blockquote:after{
-    font-size:12px;
+    font-size:14px;
   }
 }
 

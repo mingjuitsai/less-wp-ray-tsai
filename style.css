@@ -662,6 +662,9 @@ article {
   vertical-align: middle;;
   margin: 0;
 }
+.list-cat ul{
+  padding: 0;margin:0;
+}
 .list-cat li {
   vertical-align: middle;
   display: inline-block;

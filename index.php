@@ -100,7 +100,9 @@
 								<section class="the-content-desc"><?php the_content( 'Continue...' ); ?></section>
 								<!-- cat list -->
 								<ul class="list-cat">
-									<?php wp_list_categories('use_desc_for_title=0&title_li='); ?> 
+									<?php
+										echo get_the_category_list(); 
+									?> 
 								</ul>
 							</div>
 							
@@ -160,7 +162,7 @@
 						</div><!-- the-content -->
 						
 						<div class="meta clearfix">
-							<div class="category"><?php echo get_the_category_list(); ?></div>
+							<div class="category"><?php echo get_the_category_list(get_the_ID()); ?></div>
 							<div class="tags"><?php echo get_the_tag_list( '| &nbsp;', '&nbsp;' ); ?></div>
 						</div><!-- Meta -->						
 					</article>

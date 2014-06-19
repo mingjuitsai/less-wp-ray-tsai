@@ -1,0 +1,472 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"get_post_t",
+				"get_post_type"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"med",
+				"media smartphone	smartphone"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "<?php\n/**\n * The main template file.\n *\n * This is the most generic template file in a WordPress theme\n * and one of the two required files for a theme (the other being style.css).\n * It is used to display a page when nothing more specific matches a query.\n * E.g., it puts together the home page when no home.php file exists.\n * Learn more: http://codex.wordpress.org/Template_Hierarchy\n *\n * @package Ray Tsai\n */\n\nget_header(); ?>\n\n	<div id=\"primary\" class=\"content-area\">\n		<main id=\"main\" class=\"site-main\" role=\"main\">\n\n		<?php if ( have_posts() ) : ?>\n\n			<?php /* Start the Loop */ ?>\n			<?php while ( have_posts() ) : the_post(); ?>\n\n				<?php\n					/* Include the Post-Format-specific template for the content.\n					 * If you want to overload this in a child theme then include a file\n					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.\n					 */\n					get_template_part( 'content', get_post_format() );\n				?>\n\n			<?php endwhile; ?>\n\n			<?php ray_tsai_content_nav( 'nav-below' ); ?>\n\n		<?php else : ?>\n\n			<?php get_template_part( 'no-results', 'index' ); ?>\n\n		<?php endif; ?>\n\n		</main><!-- #main -->\n	</div><!-- #primary -->\n\n<?php //get_sidebar(); ?>\n<?php //get_footer(); ?>",
+			"file": "/E/xampp/htdocs/projects/raytsaiwp/wp-content/themes/ray-tsai/index.php",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 1233,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "<?php\n/**\n * Ray Tsai functions and definitions\n *\n * @package Ray Tsai\n */\n\n/**\n * Set the content width based on the theme's design and stylesheet.\n */\nif ( ! isset( $content_width ) )\n	$content_width = 640; /* pixels */\n\nif ( ! function_exists( 'ray_tsai_setup' ) ) :\n/**\n * Sets up theme defaults and registers support for various WordPress features.\n *\n * Note that this function is hooked into the after_setup_theme hook, which runs\n * before the init hook. The init hook is too late for some features, such as indicating\n * support post thumbnails.\n */\nfunction ray_tsai_setup() {\n	/**\n	 * Make theme available for translation\n	 * Translations can be filed in the /languages/ directory\n	 * If you're building a theme based on Ray Tsai, use a find and replace\n	 * to change 'ray-tsai' to the name of your theme in all the template files\n	 */\n	load_theme_textdomain( 'ray-tsai', get_template_directory() . '/languages' );\n\n	/**\n	 * Add default posts and comments RSS feed links to head\n	 */\n	add_theme_support( 'automatic-feed-links' );\n	/**\n	 * Enable support for Post Thumbnails on posts and pages\n	 *\n	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails\n	 */\n	//add_theme_support( 'post-thumbnails' );\n\n	/**\n	 * This theme uses wp_nav_menu() in one location.\n	 */\n	register_nav_menus( array(\n		'primary' => __( 'Primary Menu', 'ray-tsai' ),\n		'footer' => __( 'Footer Menu', 'ray-tsai' ),\n		'mobile' => __( 'Mobile Menu', 'ray-tsai' ),\n	) );\n	/**\n	 * Enable support for Post Formats\n	 */\n	add_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link' ) );\n\n	/**\n	 * Setup the WordPress core custom background feature.\n	 */\n	add_theme_support( 'custom-background', apply_filters( 'ray_tsai_custom_background_args', array(\n		'default-color' => 'ffffff',\n		'default-image' => '',\n	) ) );\n}\nendif; // ray_tsai_setup\nadd_action( 'after_setup_theme', 'ray_tsai_setup' );\n/**\n * Register widgetized area and update sidebar with default widgets\n */\nfunction ray_tsai_widgets_init() {\n	register_sidebar( array(\n		'name'          => __( 'Sidebar', 'ray-tsai' ),\n		'id'            => 'sidebar-1',\n		'before_widget' => '<aside id=\"%1$s\" class=\"widget %2$s\">',\n		'after_widget'  => '</aside>',\n		'before_title'  => '<h1 class=\"widget_title\">',\n		'after_title'   => '</h1>',\n	) );\n}\nadd_action( 'widgets_init', 'ray_tsai_widgets_init' );\n/**\n * Enqueue scripts and styles\n */\nfunction ray_tsai_scripts() {\n	wp_enqueue_style( 'ray-tsai-style', get_stylesheet_uri() );\n\n	wp_enqueue_script( 'ray-tsai-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );\n\n	wp_enqueue_script( 'ray-tsai-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );\n\n	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {\n		wp_enqueue_script( 'comment-reply' );\n	}\n\n	if ( is_singular() && wp_attachment_is_image() ) {\n		wp_enqueue_script( 'ray-tsai-keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array( 'jquery' ), '20120202' );\n	}\n}\nadd_action( 'wp_enqueue_scripts', 'ray_tsai_scripts' );\n/**\n * Implement the Custom Header feature.\n */\n//require get_template_directory() . '/inc/custom-header.php';\n/**\n * Custom template tags for this theme.\n */\nrequire get_template_directory() . '/inc/template-tags.php';\n/**\n * Custom functions that act independently of the theme templates.\n */\nrequire get_template_directory() . '/inc/extras.php';\n/**\n * Customizer additions.\n */\nrequire get_template_directory() . '/inc/customizer.php';\n/**\n * Load Jetpack compatibility file.\n */\nrequire get_template_directory() . '/inc/jetpack.php';\n/*\n	Remove Home in Menu\n*/\nfunction my_page_menu_args($args) {\n	$args['show_home'] = false;\n	return $args;\n}\nadd_filter('wp_page_menu_args', 'my_page_menu_args');",
+			"file": "/E/xampp/htdocs/projects/raytsaiwp/wp-content/themes/ray-tsai/functions.php",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 3884,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"save",
+				"Project: Save As"
+			],
+			[
+				"add",
+				"Project: Add Folder"
+			],
+			[
+				"todo",
+				"TodoReview: Project and Open Files"
+			],
+			[
+				"todoreiv",
+				"TodoReview: Generate List"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 528.0
+	},
+	"console":
+	{
+		"height": 174.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/single.php",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/content.php",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/footer.php",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/index.php",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/header.php",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/js/site.js",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/style.css",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/functions.php",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/js/papaer_js/dist/paper-core.min.js",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/js/papaer_js/dist/paper.js",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/js/paper-full.min.js",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/sidebar.php",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/js/navigation.js",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/layouts/sidebar-content.css",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/layouts/content-sidebar.css",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/content-page.php",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/page.php",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/content-none.php",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/js/soundmanager/demo/cassette-tape/font/JustAnotherHand_ttf_font_LICENSE.txt",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/inc/jetpack.php",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/js/soundmanager/index.html",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/js/soundmanager/demo/_image/chunk-webfont.svg",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/js/howler_js/howler.js",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/js/skip-link-focus-fix.js",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/js/customizer.js",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/content-single.php",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/plugins/page-template-example-master/page-template-example.php",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/plugins/page-template-example-master/class-page-template-example.php",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/plugins/page-template-example-master/templates/template-example-two.php",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/plugins/page-template-example-master/templates/template-example.php",
+		"/E/xampp/htdocs/php.ini",
+		"/C/Users/Roy/AppData/Roaming/Sublime Text 3/Packages/TodoReview/TodoReview.sublime-settings",
+		"/C/Users/Roy/AppData/Roaming/Sublime Text 3/Packages/User/TodoReview.sublime-settings",
+		"/C/Users/Roy/AppData/Roaming/Sublime Text 3/Packages/TodoReview/Default (Windows).sublime-keymap",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/inc/template-tags.php",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/js/soundmanager/demo/cassette-tape/font/ostrich-rounded-webfont.svg",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/js/soundmanager/demo/page-player/css/optional-annotations.css",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/js/soundmanager/demo/page-player/script/optional-page-player-metadata.js",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/js/soundmanager/doc/generated/SoundManager2_SMSound_AS3.html",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/js/soundmanager/doc/getstarted/index.html",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/js/soundmanager/demo/_mp3/going_outside.mp3",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/search.php",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/js/soundmanager/demo/template/sm2_defer-example.html",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/js/soundmanager/demo/360-player/script/berniecode-animator.js",
+		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/archive.php",
+		"/C/Users/Roy/Desktop/Create/Projects/blondblackblond/BlondBlackBlond.sublime-project",
+		"/C/Users/Roy/Desktop/Create/Projects/blondblackblond/blondblackblonde/functions.php",
+		"/C/Users/Roy/Desktop/Create/Projects/blondblackblond/blondblackblonde/content.php",
+		"/C/Users/Roy/Desktop/Create/Projects/blondblackblond/blondblackblonde/footer.php",
+		"/C/Users/Roy/Desktop/Create/Projects/blondblackblond/blondblackblonde/header.php",
+		"/C/Users/Roy/Desktop/Create/Projects/blondblackblond/blondblackblonde/content-none.php",
+		"/C/Users/Roy/Desktop/Create/Projects/blondblackblond/blondblackblonde/content-single.php",
+		"/C/Users/Roy/Desktop/Create/Projects/blondblackblond/blondblackblonde/content-page.php",
+		"/C/Users/Roy/Desktop/Create/Projects/blondblackblond/blondblackblonde/single.php",
+		"/C/Users/Roy/Desktop/Create/Projects/blondblackblond/blondblackblonde/page.php",
+		"/C/Users/Roy/Desktop/Create/Projects/blondblackblond/blondblackblonde/index.php",
+		"/E/xampp/htdocs/projects/pingyingbento/site/snippets/map.php",
+		"/C/Users/Roy/AppData/Roaming/Sublime Text 3/Packages/BracketHighlighter/Example.sublime-keymap",
+		"/C/Users/Roy/AppData/Roaming/Sublime Text 3/Packages/User/bh_core.sublime-settings",
+		"/C/Users/Roy/AppData/Roaming/Sublime Text 3/Packages/BracketHighlighter/bh_core.sublime-settings",
+		"/C/Users/Roy/AppData/Roaming/Sublime Text 3/Packages/BracketHighlighter/bh_wrapping.sublime-settings",
+		"/C/Users/Roy/AppData/Local/Temp/fz3temp-1/index.html",
+		"/C/Users/Roy/AppData/Roaming/Sublime Text 3/Packages/Emmet/Default (Windows).sublime-keymap",
+		"/C/Users/Roy/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/Roy/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/Program Files/Sublime Text 3/changelog.txt",
+		"/E/xampp/htdocs/projects/pingyingbento/site/templates/default.php",
+		"/E/xampp/htdocs/projects/monochrome/site/templates/article.php",
+		"/E/xampp/htdocs/projects/pingyingbento/assets/styles/styles.css",
+		"/E/xampp/htdocs/projects/pingyingbento/site/templates/pingying_contact.php",
+		"/E/xampp/htdocs/projects/monochrome/site/snippets/menu.php",
+		"/E/xampp/htdocs/projects/pingyingbento/site/templates/pingying_basic.php",
+		"/E/xampp/htdocs/projects/monochrome/site/panel/blueprints/article.php",
+		"/E/xampp/htdocs/projects/pingyingbento/site/panel/blueprints/pingying_contact.php",
+		"/E/xampp/htdocs/projects/pingyingbento/site/snippets/pingying_header.php",
+		"/E/xampp/htdocs/projects/pingyingbento/site/panel/blueprints/pingying.php",
+		"/C/Users/Roy/Desktop/Create/Web Tools/CMS/Kirby/kirbycms-extensions-master/themes/monochrome-master/site/templates/article.php",
+		"/C/Users/Roy/Desktop/Create/Web Tools/CMS/Kirby/kirbycms-extensions-master/themes/monochrome-master/site/panel/blueprints/search.php",
+		"/C/Users/Roy/Desktop/Create/Web Tools/CMS/Kirby/kirbycms-extensions-master/themes/monochrome-master/site/panel/blueprints/article.php",
+		"/C/Users/Roy/Desktop/Create/Web Tools/CMS/Kirby/kirbycms-extensions-master/themes/monochrome-master/site/templates/articles.php",
+		"/C/Users/Roy/Desktop/Create/Web Tools/CMS/Kirby/kirbycms-extensions-master/themes/monochrome-master/site/panel/blueprints/error.php",
+		"/C/Users/Roy/Desktop/Create/Web Tools/CMS/Kirby/kirbycms-extensions-master/themes/monochrome-master/site/panel/blueprints/articles.php",
+		"/C/Users/Roy/Desktop/Create/Web Tools/CMS/Kirby/kirbycms-extensions-master/themes/monochrome-master/site/panel/blueprints/feed.php",
+		"/C/Users/Roy/Desktop/Create/Web Tools/CMS/Kirby/kirbycms-extensions-master/themes/monochrome-master/site/templates/default.php",
+		"/C/Users/Roy/Desktop/Create/Web Tools/CMS/Kirby/kirbycms-extensions-master/themes/monochrome-master/site/templates/feed.php",
+		"/C/Users/Roy/Desktop/Create/Web Tools/CMS/Kirby/kirbycms-extensions-master/templates/feed/template/feed.php",
+		"/E/xampp/htdocs/projects/pingyingbento/site/panel/blueprints/default.php",
+		"/E/xampp/htdocs/projects/pingyingbento/site/templates/pingyingbento.php",
+		"/E/xampp/htdocs/projects/pingyingbento/site/templates/pingyingbento.html",
+		"/E/xampp/htdocs/projects/pingyingbento/site/snippets/header.php",
+		"/E/xampp/htdocs/projects/pingyingbento/site/snippets/pingying/header.php",
+		"/E/xampp/htdocs/projects/pingyingbento/site/config/config.php",
+		"/E/xampp/htdocs/projects/pingyingbento/site/panel/config/config.php",
+		"/C/Users/Roy/Desktop/Create/Projects/AFL 9s Cheese/index.html",
+		"/E/xampp/htdocs/projects/pingyingbento/panel/index.php",
+		"/C/Users/Roy/AppData/Local/Temp/fz3temp-1/index.php",
+		"/C/Users/Roy/AppData/Local/Temp/fz3temp-1/rtsai.yaml",
+		"/E/xampp/htdocs/projects/pingyingbento/index.php",
+		"/E/xampp/htdocs/projects/pingyingbento/panel/templates/info.php",
+		"/E/xampp/htdocs/projects/pingyingbento/panel/templates/preview.php",
+		"/E/xampp/htdocs/projects/pingyingbento/panel/defaults/config/config.php",
+		"/E/xampp/htdocs/projects/pingyingbento/panel/defaults/blueprints/default.php",
+		"/E/xampp/htdocs/projects/pingyingbento/panel/defaults/accounts/admin.php",
+		"/E/xampp/htdocs/xampp/biorhythm.php",
+		"/E/xampp/htdocs/projects/pingyingbento/kirby/defaults.php",
+		"/E/xampp/htdocs/projects/pingyingbento/kirby/system.php",
+		"/E/xampp/htdocs/index.php",
+		"/E/xampp/htdocs/projects/pingyingbento/panel/snippets/header.php",
+		"/E/xampp/htdocs/projects/statamic/_config/settings.yaml",
+		"/E/xampp/htdocs/projects/statamic/_config/users/admin.yaml",
+		"/E/xampp/htdocs/projects/pingyingbento/site/panel/accounts/rtsai.php",
+		"/C/Users/Roy/AppData/Local/Temp/fz3temp-1/default.php",
+		"/C/Users/Roy/AppData/Local/Temp/fz3temp-1/styles.css",
+		"/C/Users/Roy/AppData/Local/Temp/fz3temp-1/header.php",
+		"/C/Users/Roy/AppData/Local/Temp/fz3temp-1/pingying_header.php",
+		"/C/Users/Roy/AppData/Local/Temp/fz3temp-1/admin.php",
+		"/C/Users/Roy/Desktop/Create/Projects/Dominic Dowling/DominicDowling 21 August - Copy/functions.php",
+		"/C/Users/Roy/AppData/Local/Temp/fz3temp-1/config.php"
+	],
+	"find":
+	{
+		"height": 38.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			".main-navigation a",
+			"rotate",
+			"transform",
+			"sidebar",
+			"title",
+			"site",
+			"family",
+			"blondblackblonde_setup",
+			"blondblackblonde_categorized_blog",
+			"-",
+			"area",
+			"-",
+			"folder",
+			"isset",
+			"id",
+			"))",
+			"isset",
+			"address",
+			"blue",
+			"h1",
+			"local"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"<?"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/E/xampp/htdocs/projects/raytsaiwp/wp-content/themes/ray-tsai/index.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1233,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								416,
+								416
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/E/xampp/htdocs/projects/raytsaiwp/wp-content/themes/ray-tsai/functions.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3884,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								390,
+								390
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 198.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 30.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 142.0
+	},
+	"project": "Less Ray Tsai.sublime-project",
+	"replace":
+	{
+		"height": 56.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"styl",
+				"blondblackblonde\\style.css"
+			],
+			[
+				"stly",
+				"blondblackblonde\\style.css"
+			],
+			[
+				"st",
+				"blondblackblonde\\style.css"
+			],
+			[
+				"function",
+				"blondblackblonde\\functions.php"
+			],
+			[
+				"todo",
+				"TodoReview"
+			],
+			[
+				"style",
+				"style.css"
+			],
+			[
+				"header",
+				"header.php"
+			],
+			[
+				"page",
+				"page.php"
+			],
+			[
+				"sidebar",
+				"sidebar.php"
+			],
+			[
+				"func",
+				"blondblackblonde\\functions.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Users\\Roy\\Desktop\\Create\\Projects\\blondblackblond\\BlondBlackBlond.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 197.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

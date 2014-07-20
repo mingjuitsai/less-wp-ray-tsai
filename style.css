@@ -133,7 +133,7 @@ html {
 }
 ol,
 ul {
-  list-style: none;
+  list-style: disc;
 }
 blockquote,
 q {
@@ -389,10 +389,9 @@ p {
 }
 ul,
 ol {
-  margin: 0 0 1.5em 3em;
+  margin: 0 0 1.5rem 3.5rem;
 }
-ul {
-  list-style: disc;
+ul {;
 }
 ol {
   list-style: decimal;
@@ -421,10 +420,7 @@ i {
   font-style: italic;
 }
 blockquote {
-  position: relative;
-  padding: 1.2rem 0 1.3rem 0;
-  width: 50%;
-  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; float: left;
+
 }
 address {
   margin: 0 0 1.5em;
@@ -631,13 +627,22 @@ article {
 }
 .the-content blockquote{
 font-family: FontAwesome,"lft-etica","Segoe UI", Optima, sans-serif;
+-moz-osx-font-smoothing: grayscale;
 font-style: normal;
 font-weight: normal;
 line-height: 1;
 -webkit-font-smoothing: antialiased;
--moz-osx-font-smoothing: grayscale;
+position: relative;
+padding: 1.2rem 0 1rem 0;
+width: 50%;
+-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; 
+float: left;
 }
-
+.the-content li{
+  padding: 0.25rem 0;
+  font-size: 1.7rem;
+  cursor: default;
+}
 .the-content-work{
   overflow: hidden;
   float: left;
@@ -904,19 +909,9 @@ and (max-width : 480px) {
   .the-content-text{
     padding: 1.5rem 1rem;
   }
-  blockquote{
+  .the-content blockquote{
     width: 100%;
-    padding:0;
-    text-align: center;
   }
-  .the-content blockquote:before{
-    display: none;
-    /*font-size:14px;*/
-  }
-  /*.the-content blockquote:nth-of-type(even):before {
-    right: inherit;
-    left: 0;
-  }*/
 
 }
 

@@ -92,12 +92,16 @@
 													
 											</div>						        
 									    <?php endwhile; ?>
-									<?php endif; ?>
+									<?php endif; ?> <!-- Work Repeater Field END -->
 								</section>
-								
-							<?php endif; ?>
-							<!-- Work Repeater Field END -->
 
+								<?php else : ?>
+
+								<?php the_content(); ?>
+
+							<?php endif; ?> <!-- if format END -->
+
+							
 							<div class="the-content-text extend-box">
 
 								<section class="the-content-summary"><?php $summary = get_field('summary'); echo $summary; ?></section>

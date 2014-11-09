@@ -710,10 +710,7 @@ float: left;
 .page article {
   border-bottom: none;
 }
-.page article .title {
-  margin-bottom: 40px;
-  cursor: default;
-}
+
 /* Pagination */
 #pagination {
   margin-bottom: 40px;

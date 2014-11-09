@@ -62,7 +62,7 @@
 
         <?php while ( have_posts() ) : the_post(); ?>
 
-          <article class="post">
+          <article class="post project">
               <h3 class="title">
                 <a target="_blank" href="<?php $object_url = get_field('object_url'); echo $object_url; ?>" title="<?php the_title(); ?>">
                   <?php the_title() ?>

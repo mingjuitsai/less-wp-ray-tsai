@@ -8,6 +8,11 @@ define( 'LESS_VERSION', 1.1 );
 /*-----------------------------------------------------------------------------------*/
 add_theme_support( 'automatic-feed-links' );
 
+/*
+* Enable support for Post Formats.
+* See http://codex.wordpress.org/Post_Formats
+*/
+add_theme_support( 'post-formats', array( 'aside', 'image', 'gallery', 'video', 'quote', 'link', 'audio', 'quote' ) );
 
 /*-----------------------------------------------------------------------------------*/
 /* register main menu

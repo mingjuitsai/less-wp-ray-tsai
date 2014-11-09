@@ -521,9 +521,9 @@ header nav ul {
 }
 header nav ul li {
   display: inline-block;/* Chrome,Safari 5+ */
+  margin-left: .35rem;
 }
 header nav ul li:last-child{
-  margin:0;
 }
 header nav ul li:nth-child(2n+1) {
   -moz-animation: cross_fade .2s ease-in;/* Firefox 5-15 */

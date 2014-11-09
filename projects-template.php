@@ -54,29 +54,34 @@
 ?>
       <?php $args = array(
           'post_type'=> 'post',
-          'order'    => 'ASC',
+          'order'    => 'DESC',
         );
         query_posts( $args ); 
       ?>
       <?php if ( have_posts() ) : ?>
 
         <?php while ( have_posts() ) : the_post(); ?>
+          
+
+          <!-- 
+            If not Project formats don't output anything 
+          -->
+          <?php $format = get_post_format( get_the_ID() ); ?>
+          <?php if ( $format == 'video' ) : ?>
+
 
           <article class="post project">
+
               <h3 class="title">
                 <a target="_blank" href="<?php $object_url = get_field('object_url'); echo $object_url; ?>" title="<?php the_title(); ?>">
                   <?php the_title() ?>
                 </a>
               </h3>
               
-
             <div class="the-content clearfix">
               <!-- 
                 Work Repeater Field 
               -->
-              <?php $format = get_post_format( get_the_ID() ); ?>
-              <?php if ( $format == 'video' ) : ?>
-
                 <section class="the-content-work extend-box">
                   <?php if( have_rows('repeater_video') ): ?>
                       <?php while( have_rows('repeater_video') ): the_row(); ?>
@@ -103,13 +108,6 @@
                   <?php endif; ?> <!-- video Repeater Field END -->
                 </section>
               
-              <?php //else : ?>
-
-                <?php // the_content(); ?>
-
-              <?php endif; ?> <!-- if format END -->
-              
-
               <div class="the-content-text extend-box">
 
                 <section class="the-content-summary"><?php $summary = get_field('summary'); echo $summary; ?></section>
@@ -121,12 +119,13 @@
                   ?> 
                 </ul>
               </div>
-              
-              
+
               <?php wp_link_pages(); ?>
             </div><!-- the-content -->
 
           </article>
+
+        <?php endif; ?> <!-- if post format END -->
 
         <?php endwhile; ?>
         

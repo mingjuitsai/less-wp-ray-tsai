@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"cur",
+				"cursor"
+			],
+			[
 				"get_post_t",
 				"get_post_type"
 			],
@@ -20,24 +24,58 @@
 	"buffers":
 	[
 		{
-			"contents": "<?php\n/**\n * The main template file.\n *\n * This is the most generic template file in a WordPress theme\n * and one of the two required files for a theme (the other being style.css).\n * It is used to display a page when nothing more specific matches a query.\n * E.g., it puts together the home page when no home.php file exists.\n * Learn more: http://codex.wordpress.org/Template_Hierarchy\n *\n * @package Ray Tsai\n */\n\nget_header(); ?>\n\n	<div id=\"primary\" class=\"content-area\">\n		<main id=\"main\" class=\"site-main\" role=\"main\">\n\n		<?php if ( have_posts() ) : ?>\n\n			<?php /* Start the Loop */ ?>\n			<?php while ( have_posts() ) : the_post(); ?>\n\n				<?php\n					/* Include the Post-Format-specific template for the content.\n					 * If you want to overload this in a child theme then include a file\n					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.\n					 */\n					get_template_part( 'content', get_post_format() );\n				?>\n\n			<?php endwhile; ?>\n\n			<?php ray_tsai_content_nav( 'nav-below' ); ?>\n\n		<?php else : ?>\n\n			<?php get_template_part( 'no-results', 'index' ); ?>\n\n		<?php endif; ?>\n\n		</main><!-- #main -->\n	</div><!-- #primary -->\n\n<?php //get_sidebar(); ?>\n<?php //get_footer(); ?>",
-			"file": "/E/xampp/htdocs/projects/raytsaiwp/wp-content/themes/ray-tsai/index.php",
-			"file_size": -1,
-			"file_write_time": -1,
+			"file": "functions.php",
 			"settings":
 			{
-				"buffer_size": 1233,
+				"buffer_size": 3102,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "<?php\n/**\n * Ray Tsai functions and definitions\n *\n * @package Ray Tsai\n */\n\n/**\n * Set the content width based on the theme's design and stylesheet.\n */\nif ( ! isset( $content_width ) )\n	$content_width = 640; /* pixels */\n\nif ( ! function_exists( 'ray_tsai_setup' ) ) :\n/**\n * Sets up theme defaults and registers support for various WordPress features.\n *\n * Note that this function is hooked into the after_setup_theme hook, which runs\n * before the init hook. The init hook is too late for some features, such as indicating\n * support post thumbnails.\n */\nfunction ray_tsai_setup() {\n	/**\n	 * Make theme available for translation\n	 * Translations can be filed in the /languages/ directory\n	 * If you're building a theme based on Ray Tsai, use a find and replace\n	 * to change 'ray-tsai' to the name of your theme in all the template files\n	 */\n	load_theme_textdomain( 'ray-tsai', get_template_directory() . '/languages' );\n\n	/**\n	 * Add default posts and comments RSS feed links to head\n	 */\n	add_theme_support( 'automatic-feed-links' );\n	/**\n	 * Enable support for Post Thumbnails on posts and pages\n	 *\n	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails\n	 */\n	//add_theme_support( 'post-thumbnails' );\n\n	/**\n	 * This theme uses wp_nav_menu() in one location.\n	 */\n	register_nav_menus( array(\n		'primary' => __( 'Primary Menu', 'ray-tsai' ),\n		'footer' => __( 'Footer Menu', 'ray-tsai' ),\n		'mobile' => __( 'Mobile Menu', 'ray-tsai' ),\n	) );\n	/**\n	 * Enable support for Post Formats\n	 */\n	add_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link' ) );\n\n	/**\n	 * Setup the WordPress core custom background feature.\n	 */\n	add_theme_support( 'custom-background', apply_filters( 'ray_tsai_custom_background_args', array(\n		'default-color' => 'ffffff',\n		'default-image' => '',\n	) ) );\n}\nendif; // ray_tsai_setup\nadd_action( 'after_setup_theme', 'ray_tsai_setup' );\n/**\n * Register widgetized area and update sidebar with default widgets\n */\nfunction ray_tsai_widgets_init() {\n	register_sidebar( array(\n		'name'          => __( 'Sidebar', 'ray-tsai' ),\n		'id'            => 'sidebar-1',\n		'before_widget' => '<aside id=\"%1$s\" class=\"widget %2$s\">',\n		'after_widget'  => '</aside>',\n		'before_title'  => '<h1 class=\"widget_title\">',\n		'after_title'   => '</h1>',\n	) );\n}\nadd_action( 'widgets_init', 'ray_tsai_widgets_init' );\n/**\n * Enqueue scripts and styles\n */\nfunction ray_tsai_scripts() {\n	wp_enqueue_style( 'ray-tsai-style', get_stylesheet_uri() );\n\n	wp_enqueue_script( 'ray-tsai-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );\n\n	wp_enqueue_script( 'ray-tsai-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );\n\n	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {\n		wp_enqueue_script( 'comment-reply' );\n	}\n\n	if ( is_singular() && wp_attachment_is_image() ) {\n		wp_enqueue_script( 'ray-tsai-keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array( 'jquery' ), '20120202' );\n	}\n}\nadd_action( 'wp_enqueue_scripts', 'ray_tsai_scripts' );\n/**\n * Implement the Custom Header feature.\n */\n//require get_template_directory() . '/inc/custom-header.php';\n/**\n * Custom template tags for this theme.\n */\nrequire get_template_directory() . '/inc/template-tags.php';\n/**\n * Custom functions that act independently of the theme templates.\n */\nrequire get_template_directory() . '/inc/extras.php';\n/**\n * Customizer additions.\n */\nrequire get_template_directory() . '/inc/customizer.php';\n/**\n * Load Jetpack compatibility file.\n */\nrequire get_template_directory() . '/inc/jetpack.php';\n/*\n	Remove Home in Menu\n*/\nfunction my_page_menu_args($args) {\n	$args['show_home'] = false;\n	return $args;\n}\nadd_filter('wp_page_menu_args', 'my_page_menu_args');",
-			"file": "/E/xampp/htdocs/projects/raytsaiwp/wp-content/themes/ray-tsai/functions.php",
-			"file_size": -1,
-			"file_write_time": -1,
+			"file": "header.php",
 			"settings":
 			{
-				"buffer_size": 3884,
+				"buffer_size": 1046,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "<!DOCTYPE html>\n<html <?php language_attributes(); ?>>\n  <head>\n    <!-- Header -->\n    <?php get_header(); ?>\n  <?php wp_head(); ?>\n  </head>\n<body <?php body_class(); ?>>\n\n\n<?php\n  /*-----------------------------------------------------------------------------------*/\n  /* Start header\n  /*-----------------------------------------------------------------------------------*/\n?>\n<header id=\"masthead\" class=\"site-header\" role=\"banner\">\n  <div class=\"container header-wrap\">\n    \n    <div id=\"brand\">\n      <section class=\"site-title\">\n        <a href=\"<?php echo esc_url( home_url( '/' ) ); ?>\" title=\"<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>\" rel=\"home\">\n        <?php bloginfo( 'name' ); ?></a> \n        \n      </section>\n    </div><!-- /brand -->\n\n    <!-- <div class=\"desc\">\n      <?php //echo get_bloginfo( 'description' ); ?>\n    </div> -->\n  \n    <nav role=\"navigation\" class=\"site-navigation main-navigation\">\n      <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>\n    </nav><!-- .site-navigation .main-navigation -->\n    \n  </div><!--/container -->\n    \n</header><!-- #masthead .site-header -->\n\n<div class=\"container main-content\">\n\n  <div id=\"primary\">\n    <div id=\"content\" role=\"main\">\n\n<?php\n  /*-----------------------------------------------------------------------------------*/\n  /* Start Home loop\n  /*-----------------------------------------------------------------------------------*/\n  \n  if( is_home() || is_archive() ) {\n  \n?>\n      <?php if ( have_posts() ) : ?>\n\n        <?php while ( have_posts() ) : the_post(); ?>\n\n          <article class=\"post\">\n              <h3 class=\"title\">\n                <a target=\"_blank\" href=\"<?php $object_url = get_field('object_url'); echo $object_url; ?>\" title=\"<?php the_title(); ?>\">\n                  <?php the_title() ?>\n                </a>\n              </h3>\n              \n\n            <div class=\"the-content clearfix\">\n              <!-- \n                Work Repeater Field \n              -->\n              <section class=\"the-content-work extend-box\">\n                <?php if( have_rows('repeater_video') ): ?>\n                    <?php while( have_rows('repeater_video') ): the_row(); ?>\n                        <?php \n                          $file1 = get_sub_field('object_file_mp4');\n                          $file2 = get_sub_field('object_file_webm');\n                          $file3 = get_sub_field('object_file_ogg');\n                          $img  = get_sub_field('object_img'); \n                          $video_id = 'video-'.get_the_id();\n                        ?>\n                        <div class=\"wrap-vid\">\n                      <section class=\"header-vid\">\n                        <span class=\"circle\"></span><span class=\"circle\"></span><span class=\"circle\"></span>\n                      </section>\n                      <!-- If destop display video -->\n                            <video id=\"<?php echo $video_id; ?>\" class=\"the-content-video extend-box\" poster=\"<?php echo $img; ?>\" width=\"\" height=\"auto\">\n                          <source src=\"<?php echo $file1; ?>\" type='video/mp4;codecs=\"avc1.42E01E, mp4a.40.2\"' />\n                          <source src=\"<?php echo $file2; ?>\" type='video/webm;codecs=\"vp8, vorbis\"' />\n                          <source src=\"<?php echo $file3; ?>\" type=\"video/ogg; codecs=theora,vorbis\" />\n                          <img class=\"the-content-img extend-box\" src=\"<?php echo $img; ?>\">\n                        </video>\n                        \n                    </div>                    \n                    <?php endwhile; ?>\n                <?php endif; ?>\n              </section>\n              <!-- Work Repeater Field END -->\n\n              <div class=\"the-content-text extend-box\">\n\n                <section class=\"the-content-summary\"><?php $summary = get_field('summary'); echo $summary; ?></section>\n                <section class=\"the-content-desc\"><?php the_content( 'Continue...' ); ?></section>\n                <!-- cat list -->\n                <ul class=\"list-cat\">\n                  <?php\n                    echo get_the_category_list(); \n                  ?> \n                </ul>\n              </div>\n              \n              \n              <?php wp_link_pages(); ?>\n            </div><!-- the-content -->\n\n          </article>\n\n        <?php endwhile; ?>\n        \n        <!-- pagintation -->\n        <div id=\"pagination\" class=\"clearfix\">\n          <div class=\"past-page\"><?php previous_posts_link( 'Newer &raquo;' ); ?></div>\n          <div class=\"next-page\"><?php next_posts_link( ' &laquo; Older' ); ?></div>\n        </div><!-- pagination -->\n\n\n      <?php else : ?>\n        \n        <article class=\"post error\">\n          <h1 class=\"404\">Nothing posted yet</h1>\n        </article>\n\n      <?php endif; ?>\n\n    \n  <?php } //end is_home(); ?>\n\n<?php\n  /*-----------------------------------------------------------------------------------*/\n  /* Start Single loop\n  /*-----------------------------------------------------------------------------------*/\n  \n  if( is_single() ) {\n?>\n      <?php if ( have_posts() ) : ?>\n\n        <?php while ( have_posts() ) : the_post(); ?>\n\n          <article class=\"post\">\n\n            <h1 class=\"title\"><?php the_title() ?></h1>\n            <div class=\"post-meta\">\n              <?php if( comments_open() ) : ?>\n                <span class=\"comments-link\">\n                  <?php comments_popup_link( __( 'Comment', 'less' ), __( '1 Comment', 'less' ), __( '% Comments', 'less' ) ); ?>\n                </span>\n              <?php endif; ?>\n            \n            </div><!--/post-meta -->\n            \n            <div class=\"the-content\">\n              <?php the_content( 'Continue...' ); ?>\n              \n              <?php wp_link_pages(); ?>\n            </div><!-- the-content -->\n            \n            <div class=\"meta clearfix\">\n              <div class=\"category\"><?php echo get_the_category_list(get_the_ID()); ?></div>\n              <div class=\"tags\"><?php echo get_the_tag_list( '| &nbsp;', '&nbsp;' ); ?></div>\n            </div><!-- Meta -->           \n          </article>\n\n        <?php endwhile; ?>\n        \n        <?php\n          // If comments are open or we have at least one comment, load up the comment template\n          if ( comments_open() || '0' != get_comments_number() )\n            comments_template( '', true );\n        ?>\n\n\n      <?php else : ?>\n        \n        <article class=\"post error\">\n          <h1 class=\"404\">Nothing posted yet</h1>\n        </article>\n\n      <?php endif; ?>\n  <?php } //end is_single(); ?>\n  \n<?php\n  /*-----------------------------------------------------------------------------------*/\n  /* Start Page loop\n  /*-----------------------------------------------------------------------------------*/\n  \n  if( is_page()) {\n?>\n\n      <?php if ( have_posts() ) : ?>\n\n        <?php while ( have_posts() ) : the_post(); ?>\n\n          <article class=\"post\">\n            \n            <!-- <h1 class=\"title\"><?php the_title() ?></h1> -->\n            <div class=\"the-content\">\n              <?php the_content(); ?>\n              \n              <?php wp_link_pages(); ?>\n            </div><!-- the-content -->\n            \n          </article>\n\n        <?php endwhile; ?>\n\n      <?php else : ?>\n        \n        <article class=\"post error\">\n          <h1 class=\"404\">Nothing posted yet</h1>\n        </article>\n\n      <?php endif; ?>\n\n  <?php } // end is_page(); ?>\n\n    </div><!-- #content .site-content -->\n  </div><!-- #primary .content-area -->\n\n</div><!-- / container-->\n\n<?php\n  /*-----------------------------------------------------------------------------------*/\n  /* Start Footer\n  /*-----------------------------------------------------------------------------------*/\n?>\n\n<footer class=\"site-footer\" role=\"contentinfo\">\n  <div class=\"site-info container\">\n    \n  </div><!-- .site-info -->\n</footer><!-- #colophon .site-footer -->\n\n<?php wp_footer(); ?>\n\n</body>\n</html>\n",
+			"settings":
+			{
+				"buffer_size": 7973,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "index.php",
+			"settings":
+			{
+				"buffer_size": 8132,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "projects-template.php",
+			"settings":
+			{
+				"buffer_size": 5756,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/theme.min.js",
+			"settings":
+			{
+				"buffer_size": 997,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "style.css",
+			"settings":
+			{
+				"buffer_size": 18479,
 				"line_ending": "Windows"
 			}
 		}
@@ -104,8 +142,19 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+		"/C/xampp/htdocs/x-files/Less"
+	],
 	"file_history":
 	[
+		"/C/xampp/htdocs/x-files/community-finance/wp-content/themes/community-finance/page-slider.php",
+		"/C/xampp/htdocs/x-files/community-finance/wp-content/themes/community-finance/index.php",
+		"/C/xampp/htdocs/x-files/Less/blog-template.php",
+		"/C/xampp/htdocs/x-files/Less/style.css",
+		"/C/xampp/htdocs/x-files/community-finance/wp-content/themes/community-finance/functions.php",
+		"/E/xampp/htdocs/projects/raytsaiwp/wp-content/themes/ray-tsai/index.php",
+		"/E/xampp/htdocs/projects/raytsaiwp/wp-content/themes/ray-tsai/functions.php",
 		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/single.php",
 		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/content.php",
 		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/footer.php",
@@ -241,6 +290,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"$img",
+			"-vid",
+			"wrap-vid",
+			".title",
 			".main-navigation a",
 			"rotate",
 			"transform",
@@ -280,24 +333,24 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 6,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/E/xampp/htdocs/projects/raytsaiwp/wp-content/themes/ray-tsai/index.php",
+					"file": "functions.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1233,
+						"buffer_size": 3102,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								416,
-								416
+								606,
+								606
 							]
 						],
 						"settings":
@@ -309,36 +362,181 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "/E/xampp/htdocs/projects/raytsaiwp/wp-content/themes/ray-tsai/functions.php",
+					"file": "header.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3884,
+						"buffer_size": 1046,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								390,
-								390
+								196,
+								196
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7973,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2272,
+								2272
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1201.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "index.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8132,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2722,
+								2722
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1384.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "projects-template.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5756,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4116,
+								4116
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1957.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "js/theme.min.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 997,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								742,
+								742
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": -0.0,
-						"translation.y": 198.0,
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "style.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 18479,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								17396,
+								17396
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 18311.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -457,13 +655,14 @@
 		],
 		"width": 0.0
 	},
+	"selected_group": 0,
 	"settings":
 	{
 	},
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": true,
+	"side_bar_visible": false,
 	"side_bar_width": 197.0,
 	"status_bar_visible": true,
 	"template_settings":

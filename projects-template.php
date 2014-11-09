@@ -96,7 +96,7 @@
                           <section class="header-sec">
                             <span class="circle"></span><span class="circle"></span><span class="circle"></span>
                           </section>
-                          <!-- If destop display video -->
+                          <!-- If desktop display video -->
                           <video id="<?php echo $video_id; ?>" class="the-content-video extend-box" poster="<?php echo $img; ?>" width="" height="auto">
                             <source src="<?php echo $file1; ?>" type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' />
                             <source src="<?php echo $file2; ?>" type='video/webm;codecs="vp8, vorbis"' />
@@ -115,7 +115,7 @@
                 <!-- cat list -->
                 <ul class="list-cat">
                   <?php
-                    echo get_the_category_list(); 
+                    echo get_the_tag_list(); 
                   ?> 
                 </ul>
               </div>

@@ -857,10 +857,11 @@ video{
   line-height: normal;
   margin-bottom: 1.2rem;
   padding: .3rem 0rem;
+  cursor: default;
 }
 
 .blog .title a{
-  color:rgb(98, 71, 108);
+  color:rgb(66, 47, 73);
 }
 
 /* Media Queries for responsivenessssssss

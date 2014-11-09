@@ -55,12 +55,14 @@
 
           <article class="post blog">
               <h3 class="title">
-                <a target="_blank" href="<?php $object_url = get_field('object_url'); echo $object_url; ?>" title="<?php the_title(); ?>">
+                <a target="_blank" href="<?php the_permalink() ?>" title="<?php the_title(); ?>">
                   <?php the_title() ?>
                 </a>
               </h3>
+              <h5 class="date">
+                <?php the_date(); ?>
+              </h5>
               
-
             <div class="the-content clearfix">
               <!-- 
                 Work Repeater Field 

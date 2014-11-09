@@ -14,6 +14,8 @@ add_theme_support( 'automatic-feed-links' );
 */
 add_theme_support( 'post-formats', array( 'aside', 'image', 'gallery', 'video', 'quote', 'link', 'audio', 'quote' ) );
 
+add_theme_support( 'post-thumbnails' );
+
 /*-----------------------------------------------------------------------------------*/
 /* register main menu
 /*-----------------------------------------------------------------------------------*/

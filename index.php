@@ -59,49 +59,62 @@
                   <?php the_title() ?>
                 </a>
               </h3>
-              <h5 class="date">
-                <?php the_date(); ?>
-              </h5>
               
             <div class="the-content clearfix">
               <!-- 
                 Work Repeater Field 
               -->
               <?php $format = get_post_format( get_the_id() ); ?>
-              <?php if ( $format == 'video' ) : ?>
+              
 
 
                 <section class="the-content-work extend-box">
-                  <?php if( have_rows('repeater_video') ): ?>
-                      <?php while( have_rows('repeater_video') ): the_row(); ?>
+
+
+                  <?php if ( $format == 'video' ) : ?>
+
+                    <?php if( have_rows('repeater_video') ): ?>
+                        <?php while( have_rows('repeater_video') ): the_row(); ?>
                           <?php 
                             $file1 = get_sub_field('object_file_mp4');
                             $file2 = get_sub_field('object_file_webm');
                             $file3 = get_sub_field('object_file_ogg');
-                            $img  = get_sub_field('object_img'); 
+                            $img  = get_sub_field('object_img');
                             $video_id = 'video-'.get_the_id();
                           ?>
                           <div class="wrap-sec">
-                        <section class="header-sec">
-                          <span class="circle"></span><span class="circle"></span><span class="circle"></span>
-                        </section>
-                        <!-- If destop display video -->
+                            <section class="header-sec">
+                              <span class="circle"></span><span class="circle"></span><span class="circle"></span>
+                            </section>
+                            <!-- If destop display video -->
                             <video id="<?php echo $video_id; ?>" class="the-content-video extend-box" poster="<?php echo $img; ?>" width="" height="auto">
-                            <source src="<?php echo $file1; ?>" type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' />
-                            <source src="<?php echo $file2; ?>" type='video/webm;codecs="vp8, vorbis"' />
-                            <source src="<?php echo $file3; ?>" type="video/ogg; codecs=theora,vorbis" />
-                            <img class="the-content-img extend-box" src="<?php echo $img; ?>">
-                          </video>
-                          
-                      </div>                    
-                      <?php endwhile; ?>
-                  <?php endif; ?> <!-- Work Repeater Field END -->
+                              <source src="<?php echo $file1; ?>" type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' />
+                              <source src="<?php echo $file2; ?>" type='video/webm;codecs="vp8, vorbis"' />
+                              <source src="<?php echo $file3; ?>" type="video/ogg; codecs=theora,vorbis" />
+                              <img class="the-content-img extend-box" src="<?php echo $img; ?>">
+                            </video>
+                          </div>                    
+                        <?php endwhile; ?>
+                    <?php endif; ?> <!-- Work Repeater Field END -->
+                  
+
+                  <?php else : ?>
+
+                    <?php the_post_thumbnail( $size, $attr ); ?> 
+
+                  <?php endif; ?> <!-- if format END -->
+                  
+                
                 </section>
 
-              <div class="the-content-text extend-box">
 
+              <div class="the-content-text extend-box">
+                
+                <h5 class="date">
+                  <?php the_date(); ?>
+                </h5>
                 <section class="the-content-summary"><?php $summary = get_field('summary'); echo $summary; ?></section>
-                <section class="the-content-desc"><?php the_content( 'Continue...' ); ?></section>
+                <section class="the-content-desc"><?php the_content( '...More' ); ?></section>
                 <!-- cat list -->
                 <ul class="list-cat">
                   <?php
@@ -111,15 +124,6 @@
               </div>
 
 
-              <?php else : ?>
-
-                <?php the_content(); ?>
-
-              <?php endif; ?> <!-- if format END -->
-              
-
-
-              
               <?php wp_link_pages(); ?>
             </div><!-- the-content -->
 

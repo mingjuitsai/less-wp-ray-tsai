@@ -385,7 +385,7 @@ hr {
 }
 /* Text elements */
 p {
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.55rem;
 }
 ul,
 ol {
@@ -581,13 +581,13 @@ header nav ul li:hover a {
   padding-top: 1.2rem;
 }
 .main-content{
-  padding: 2.5rem 4rem;
+  padding: 7.3rem 4rem;
   width: 100%;
 }
 article {
   background: transparent;
   padding: 0;
-  margin-bottom: 2.3rem;
+  margin-bottom: 3rem;
   letter-spacing: .9px;
   display: inline-block;
   vertical-align: text-top;
@@ -818,7 +818,6 @@ video{
   height: auto   !important;
   -webkit-filter: brightness(107%);
   display: block;
-
 }
 .wrap-sec{
   -webkit-border-radius: 4px;
@@ -851,6 +850,19 @@ video{
   cursor: pointer;
   cursor: url("img/icon_play.png"), auto;
 }
+/* Blog */
+.blog .date {
+  font-size: 1.1rem;
+  color: rgb(55, 55, 55);
+  line-height: normal;
+  margin-bottom: 1.2rem;
+  padding: .3rem 0rem;
+}
+
+.blog .title a{
+  color:rgb(98, 71, 108);
+}
+
 /* Media Queries for responsivenessssssss
 -------------------------------------------------------------- */
 @media (max-width: 767px) {

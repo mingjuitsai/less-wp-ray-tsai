@@ -92,8 +92,8 @@
                             $img  = get_sub_field('object_img'); 
                             $video_id = 'video-'.get_the_ID();
                           ?>
-                        <div class="wrap-vid">
-                          <section class="header-vid">
+                        <div class="wrap-sec">
+                          <section class="header-sec">
                             <span class="circle"></span><span class="circle"></span><span class="circle"></span>
                           </section>
                           <!-- If destop display video -->

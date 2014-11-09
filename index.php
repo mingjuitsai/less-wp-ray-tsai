@@ -81,12 +81,12 @@
                             $img  = get_sub_field('object_img'); 
                             $video_id = 'video-'.get_the_id();
                           ?>
-                          <div class="wrap-vid">
-                        <section class="header-vid">
+                          <div class="wrap-sec">
+                        <section class="header-sec">
                           <span class="circle"></span><span class="circle"></span><span class="circle"></span>
                         </section>
                         <!-- If destop display video -->
-                              <video id="<?php echo $video_id; ?>" class="the-content-video extend-box" poster="<?php echo $img; ?>" width="" height="auto">
+                            <video id="<?php echo $video_id; ?>" class="the-content-video extend-box" poster="<?php echo $img; ?>" width="" height="auto">
                             <source src="<?php echo $file1; ?>" type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' />
                             <source src="<?php echo $file2; ?>" type='video/webm;codecs="vp8, vorbis"' />
                             <source src="<?php echo $file3; ?>" type="video/ogg; codecs=theora,vorbis" />

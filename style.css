@@ -646,10 +646,10 @@ float: left;
 .the-content-work{
   overflow: hidden;
   float: left;
-  width: 54%;
   -moz-box-shadow: 0 8px 15px -10px rgb(228, 228, 228);
   box-shadow: 0 8px 15px -10px rgb(228, 228, 228);
   -webkit-box-shadow: 0 8px 15px -10px rgb(228, 228, 228);
+  width: 54%;
 }
 .the-content-text {
   overflow: hidden;
@@ -820,14 +820,14 @@ video{
   display: block;
 
 }
-.wrap-vid{
+.wrap-sec{
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
   border-top: solid 1px rgb(228, 228, 228);
   border: solid 1px rgb(218, 218, 218);
 }
-.header-vid{
+.header-sec{
   border-bottom: solid 1px rgb(224, 224, 224);
   padding: 0 .6rem;}
 .circle{

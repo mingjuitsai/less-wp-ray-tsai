@@ -110,7 +110,7 @@
               
               <div class="the-content-text extend-box">
 
-                <section class="the-content-summary"><?php $summary = get_field('summary'); echo $summary; ?></section>
+                <section class="the-content-summary"> <?php  if ( has_excerpt() ) { the_excerpt(); } ?> </section>
                 <section class="the-content-desc"><?php the_content( '...More' ); ?></section>
                 <!-- tags list -->
                 <ul class="list-block list-tags">

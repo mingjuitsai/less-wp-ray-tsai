@@ -503,7 +503,7 @@ header #brand {
 .site-title{  
 }
 .site-title a{
-  color: rgb(56, 56, 56);
+  color: rgb(82, 80, 86);
   text-transform: lowercase;
   font-size: 4.5rem;
   font-family: "futura-pt", Futura, "Trebuchet MS", sans-serif;
@@ -540,7 +540,7 @@ header nav ul li:nth-child(2n+2) {
 header nav ul li a {
   font-family: "futura-pt", Futura, "Trebuchet MS", sans-serif;
   text-transform: lowercase;
-  color: #353535;
+  color: #4F4F4F;
   font-size: 2.5rem;
 }
 header nav ul li:hover a {
@@ -620,7 +620,7 @@ article {
   height: auto;
 }
 .the-content p {
-  color: #464646;
+  color: #515151;
   font-size: 1.45rem;
   line-height: 2.1rem;
   text-transform: lowercase;
@@ -665,7 +665,7 @@ float: left;
 
 }
 .the-content .the-content-summary p {
-  color: #111111;
+  color: #3F3F3F;
   font-size: 1.8rem;
   line-height: 2.2rem;
 }

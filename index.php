@@ -113,7 +113,7 @@
                 <section class="the-content-summary"><?php $summary = get_field('summary'); echo $summary; ?></section>
                 <section class="the-content-desc"><?php the_content( '...More' ); ?></section>
                 <!-- cat list -->
-                <ul class="list-cat">
+                <ul class="list-block list-tags">
                   <?php
                     echo get_the_tag_list(); 
                   ?> 

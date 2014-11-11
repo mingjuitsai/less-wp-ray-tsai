@@ -177,7 +177,7 @@
             
             <div class="meta clearfix">
               <ul class="list-block list-cats"><?php echo get_the_category_list(get_the_ID()); ?></ul>
-              <ul class="list-block list-tags"><?php echo get_the_tag_list( '| &nbsp;', '&nbsp;' ); ?></ul>
+              <ul class="list-block list-tags"><?php echo get_the_tag_list(); ?></ul>
             </div><!-- Meta -->           
           </article>
 

@@ -367,7 +367,7 @@ h2 {
 }
 h3 {
   font-size: 2.3rem;
-  line-height: 3.2rem;
+  line-height: 2.9rem;
   margin: 0 1.5rem 0 0;
   overflow: hidden;
 }
@@ -595,7 +595,7 @@ article {
   background: transparent;
   padding: 0;
   margin-bottom: 3rem;
-  letter-spacing: .9px;
+  letter-spacing: 0.068rem;
   display: inline-block;
   vertical-align: text-top;
 }
@@ -693,6 +693,11 @@ float: left;
   color: rgb(250, 242, 255);
   border-color: white;
 }
+.list-cats a {
+}
+.list-cats a:hover {
+background: rgb(215, 55, 128);
+}
 
 .more-link {
   text-transform:lowercase;
@@ -718,6 +723,9 @@ float: left;
   line-height: 3.4rem;
   margin-bottom: 3.1rem;
   text-align: center;
+}
+.single-post .meta {
+  margin: 6.2rem 0;
 }
 
 /* 
@@ -889,6 +897,12 @@ html[xmlns] .clearfix {
 }
 /* Responsive breakpoints based on Layout and Contents ----------- */
 @media only screen 
+and (max-width : 1000px) {
+  .container{
+    width: 90%;
+  }
+}
+@media only screen 
 and (max-width : 730px) {
   .the-content-text{
   -moz-box-shadow: none;
@@ -904,6 +918,12 @@ and (max-width : 650px) {
   }
   .the-content-text{
     padding: 1.5rem .5rem;
+  }
+}
+@media only screen 
+and (max-width : 600px) {
+  header #brand {
+    text-align:left;
   }
 }
 @media only screen 

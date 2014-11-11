@@ -87,3 +87,11 @@ function wp_list_categories_remove_title_attributes($output) {
     return $output;
 }
 add_filter('wp_list_categories', 'wp_list_categories_remove_title_attributes');
+/*
+	Remove read more anchor tag
+*/
+function remove_more_link_scroll( $link ) {
+	$link = preg_replace( '|#more-[0-9]+|', '', $link );
+	return $link;
+}
+add_filter( 'the_content_more_link', 'remove_more_link_scroll' );

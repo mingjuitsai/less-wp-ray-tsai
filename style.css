@@ -366,16 +366,15 @@ h2 {
   font-size: 3.4rem;
 }
 h3 {
-  line-height: 1.5em;
-  font-size: 28px;
-  font-size: 2.1rem;
+  font-size: 2.3rem;
+  line-height: 3.2rem;
+  margin: 0 1.5rem 0 0;
   overflow: hidden;
-  margin-bottom: .3rem;
 }
 h4 {
-  line-height: 26.64px;
-  font-size: 18px;
-  font-size: 1.8rem;
+  font-size: 1.75rem;
+  line-height: 2.6rem;
+  margin-bottom: 1.55rem;
 }
 hr {
   background-color: #ccc;
@@ -389,12 +388,12 @@ p {
 }
 ul,
 ol {
-  margin: 0 0 1.5rem 3.5rem;
+  margin: 0 0 1.9rem 3.2rem;
 }
 ul {;
 }
 ol {
-  list-style: decimal;
+  list-style: decimal inside;
 }
 ul ul,
 ol ol,
@@ -402,6 +401,12 @@ ul ol,
 ol ul {
   margin-bottom: 0;
   margin-left: 1.5em;
+}
+li{
+  padding: 0.25rem 0;
+  cursor: default;
+  font-size: 1.5rem;
+  line-height: normal;
 }
 dt {
   font-weight: bold;
@@ -573,12 +578,14 @@ header nav ul li:hover a {
   padding-right: 2rem;
   max-width: 1024px;
 }
+
 /* Posts/Articles
 -------------------------------------------------------------- */
 #content{
 }
 .the-content{
   padding-top: 1.2rem;
+  overflow:hidden;
 }
 .main-content{
   padding: 7.3rem 4rem;
@@ -591,24 +598,16 @@ article {
   letter-spacing: .9px;
   display: inline-block;
   vertical-align: text-top;
-  text-transform: capitalize;
 }
 .title {
   color: #404040;
-  font-size: 3.2rem;
-  font-weight: 500;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: 4rem;
-  margin: 0 1.5rem 0 0;
-  font-family: "futura-pt", Futura, "Trebuchet MS", sans-serif;;
+  font-family: "futura-pt", Futura, "Trebuchet MS", sans-serif;
+  text-transform: lowercase;
+  font-weight: 400;
 }
 .title a {
   text-decoration: none;
   color: #1B1B1B;
-  font-size: .85em;
-  font-weight: 400;
-  text-transform: lowercase;
 }
 
 .the-content a {
@@ -623,7 +622,6 @@ article {
   color: #515151;
   font-size: 1.45rem;
   line-height: 2.1rem;
-  text-transform: lowercase;
 }
 .the-content blockquote{
 font-family: FontAwesome,"lft-etica","Segoe UI", Optima, sans-serif;
@@ -638,11 +636,7 @@ width: 50%;
 -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; 
 float: left;
 }
-.the-content li{
-  padding: 0.25rem 0;
-  font-size: 1.7rem;
-  cursor: default;
-}
+
 .the-content-work{
   overflow: hidden;
   float: left;
@@ -698,8 +692,80 @@ float: left;
   background: rgb(145, 94, 255);
   color: rgb(250, 242, 255);
   border-color: white;
-
 }
+
+.more-link {
+  text-transform:lowercase;
+}
+
+/* Blog */
+.blog .date {
+  font-size: 1.1rem;
+  color: rgb(55, 55, 55);
+  line-height: normal;
+  margin-bottom: 1.2rem;
+  padding: .3rem 0rem;
+  cursor: default;
+}
+
+.blog .title a{
+  color:rgb(66, 47, 73);
+}
+
+/* Single Post */
+.single-post .title {
+  font-size: 3rem;
+  line-height: 3.4rem;
+  margin-bottom: 3.1rem;
+  text-align: center;
+}
+
+/* 
+  video 
+*/
+video{
+  width: 100%    !important;
+  height: auto   !important;
+  -webkit-filter: brightness(107%);
+  display: block;
+}
+.wrap-sec{
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  border-top: solid 1px rgb(228, 228, 228);
+  border: solid 1px rgb(218, 218, 218);
+}
+.header-sec{
+  border-bottom: solid 1px rgb(224, 224, 224);
+  padding: 0 .6rem;}
+.circle{
+  display: inline-block;
+  width: 1.2rem;
+  height: 1.2rem;
+  border: solid 1px rgb(219, 219, 219);
+  vertical-align: middle;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  margin: 0 .3rem;
+  background: rgb(247, 247, 247);
+}
+.the-content-video{
+  cursor: pointer;
+  cursor: url("img/icon_pause.png"), auto;
+}
+.the-content-video.paused {
+  opacity: 0.94;
+  cursor: pointer;
+  cursor: url("img/icon_play.png"), auto;
+}
+
+/* audio */
+.mejs-container {
+  margin-bottom: 1.55rem;
+} 
+
 /* Page loop styling */
 .page article {
   border-bottom: none;
@@ -716,6 +782,7 @@ float: left;
 #pagination .next-page {
   float: left;
 }
+
 /* Comments */
 h3#comments {
   margin-bottom: 80px;
@@ -804,64 +871,7 @@ html[xmlns] .clearfix {
 * html .clearfix {
   height: 1%;
 }
-/* 
-  video 
-*/
-video{
-  width: 100%    !important;
-  height: auto   !important;
-  -webkit-filter: brightness(107%);
-  display: block;
-}
-.wrap-sec{
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  border-top: solid 1px rgb(228, 228, 228);
-  border: solid 1px rgb(218, 218, 218);
-}
-.header-sec{
-  border-bottom: solid 1px rgb(224, 224, 224);
-  padding: 0 .6rem;}
-.circle{
-  display: inline-block;
-  width: 1.2rem;
-  height: 1.2rem;
-  border: solid 1px rgb(219, 219, 219);
-  vertical-align: middle;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
-  margin: 0 .3rem;
-  background: rgb(247, 247, 247);
-}
-.the-content-video{
-  cursor: pointer;
-  cursor: url("img/icon_pause.png"), auto;
-}
-.the-content-video.paused {
-  opacity: 0.94;
-  cursor: pointer;
-  cursor: url("img/icon_play.png"), auto;
-}
-/* Blog */
-.blog .date {
-  font-size: 1.1rem;
-  color: rgb(55, 55, 55);
-  line-height: normal;
-  margin-bottom: 1.2rem;
-  padding: .3rem 0rem;
-  cursor: default;
-}
 
-.blog .title a{
-  color:rgb(66, 47, 73);
-}
-
-/* audio */
-.mejs-container {
-  margin-bottom: 1.55rem;
-} 
 
 /* Media Queries for responsivenessssssss
 -------------------------------------------------------------- */

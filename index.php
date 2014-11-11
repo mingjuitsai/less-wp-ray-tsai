@@ -111,7 +111,7 @@
                   <?php the_date(); ?>
                 </h5>
                 <section class="the-content-summary"> <?php  if ( has_excerpt() ) { the_excerpt(); } ?> </section>
-                <section class="the-content-desc"><?php the_content( '...More' ); ?></section>
+                <section class="the-content-desc"><?php the_content( 'More' ); ?></section>
                 <!-- cat list -->
                 <ul class="list-block list-tags">
                   <?php
@@ -159,7 +159,7 @@
 
           <article class="post single-post">
 
-            <h1 class="title"><?php the_title() ?></h1>
+            <h3 class="title"><?php the_title() ?></h3>
             <div class="post-meta">
               <?php if( comments_open() ) : ?>
                 <span class="comments-link">
@@ -176,8 +176,8 @@
             </div><!-- the-content -->
             
             <div class="meta clearfix">
-              <div class="category"><?php echo get_the_category_list(get_the_ID()); ?></div>
-              <div class="tags"><?php echo get_the_tag_list( '| &nbsp;', '&nbsp;' ); ?></div>
+              <ul class="list-block list-cats"><?php echo get_the_category_list(get_the_ID()); ?></ul>
+              <ul class="list-block list-tags"><?php echo get_the_tag_list( '| &nbsp;', '&nbsp;' ); ?></ul>
             </div><!-- Meta -->           
           </article>
 

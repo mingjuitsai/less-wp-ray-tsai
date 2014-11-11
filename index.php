@@ -157,7 +157,7 @@
 
         <?php while ( have_posts() ) : the_post(); ?>
 
-          <article class="post">
+          <article class="post single-post">
 
             <h1 class="title"><?php the_title() ?></h1>
             <div class="post-meta">

@@ -546,7 +546,7 @@ header nav ul li a {
 header nav ul li:hover a {
   color: rgb(55, 60, 68);
 }
-.current-menu-item,.current_page_parent{
+.current-menu-item{
   display: none;
 }
 .current-menu-item a{}
@@ -857,6 +857,11 @@ video{
 .blog .title a{
   color:rgb(66, 47, 73);
 }
+
+/* audio */
+.mejs-container {
+  margin-bottom: 1.55rem;
+} 
 
 /* Media Queries for responsivenessssssss
 -------------------------------------------------------------- */

@@ -515,41 +515,40 @@ header #brand {
   font-weight: 500;
 }
 header nav {
-  text-align: center;
-  position: absolute;
+  text-align: right;
   bottom: 0;
   right: 0;
+  position: absolute;
 }
 header nav ul {
   list-style: none;
   margin: 0;
 }
-header nav ul li {
-  display: inline-block;/* Chrome,Safari 5+ */
-  margin-left: .35rem;
+header nav ul > li {
+  display: inline-block;
+  margin-left: .5rem;/* Chrome,Safari 5+ */
 }
-header nav ul li:last-child{
-}
-header nav ul li:nth-child(2n+1) {
+
+header nav ul > li:nth-child(2n+1) {
   -moz-animation: cross_fade .2s ease-in;/* Firefox 5-15 */
   -o-animation: cross_fade .2s ease-in;/* Opera 12.00 */
   animation: cross_fade .2s ease-in;
   -webkit-animation: cross_fade .2s ease-in;/* Chrome,Firefox 16+,IE 10+,Opera 12.10+ */
 }
-header nav ul li:nth-child(2n+2) {
+header nav ul > li:nth-child(2n+2) {
   -moz-animation: cross_fade .4s ease-in;/* Firefox 5-15 */
   -o-animation: cross_fade .4s ease-in;/* Opera 12.00 */
   animation: cross_fade .4s ease-in;
   -webkit-animation: cross_fade .4s ease-in;/* Chrome,Firefox 16+,IE 10+,Opera 12.10+ */
 }
-header nav ul li a {
+header nav ul > li a {
   font-family: "futura-pt", Futura, "Trebuchet MS", sans-serif;
   text-transform: lowercase;
   color: #4F4F4F;
   font-size: 2.5rem;
 }
-header nav ul li:hover a {
-  color: rgb(55, 60, 68);
+header nav ul > li:hover a {
+  color: rgb(107, 72, 181);
 }
 .current-menu-item{
   display: none;
@@ -588,8 +587,21 @@ header nav ul li:hover a {
   overflow:hidden;
 }
 .main-content{
-  padding: 7.3rem 4rem;
   width: 100%;
+  padding: 2.3rem 4rem;
+}
+.title-page {
+  text-align: center;
+  padding: .6rem 1.6%;
+  font-size: 1.5rem;
+  line-height: normal;
+  color: rgb(74, 74, 74);
+  font-weight: normal;
+  display: table;
+  margin: auto;
+  border: solid 1px rgb(140, 140, 140);
+  margin-bottom: 4rem;
+  cursor: default;
 }
 article {
   background: transparent;
@@ -658,10 +670,11 @@ float: left;
 .the-content-summary{
 
 }
-.the-content .the-content-summary p {
+.the-content .the-content-summary p, .the-content .the-content-summary a {
   color: #3F3F3F;
   font-size: 1.8rem;
   line-height: 2.2rem;
+  text-decoration: none;
 }
 .the-content-desc{
 
@@ -689,7 +702,7 @@ float: left;
   border: solid 1px rgb(141, 141, 141);
 }
 .list-block a:hover{
-  background: rgb(145, 94, 255);
+  background: rgb(120, 86, 194);
   color: rgb(250, 242, 255);
   border-color: white;
 }
@@ -883,31 +896,49 @@ html[xmlns] .clearfix {
 
 /* Media Queries for responsivenessssssss
 -------------------------------------------------------------- */
-@media (max-width: 767px) {
-  header {
-    padding: 0;
-  }
-  header nav {
-    float: none;
-  }
-
-  header hgroup {
-    width: 100%;
-  }
-}
 /* Responsive breakpoints based on Layout and Contents ----------- */
 @media only screen 
-and (max-width : 1000px) {
+and (max-width : 1200px) {
   .container{
-    width: 90%;
+    width: 75%;
   }
 }
+@media only screen 
+and (max-width : 1070px) {
+  .container{
+    width: 80%;
+  }
+}
+@media only screen 
+and (max-width : 770px) {
+  .main-content {
+    padding:2.4rem 3rem;
+  }
+}
+
 @media only screen 
 and (max-width : 730px) {
   .the-content-text{
   -moz-box-shadow: none;
   box-shadow: none;
   -webkit-box-shadow: none;
+  }
+}
+@media (max-width: 767px) {
+  header {
+    padding: 0;
+  }
+  header nav {
+    float: none;
+    position:relative;
+    margin: .5rem 0;
+    text-align: center;
+  }
+  header nav ul > li {
+    margin-left: .8rem;
+  }
+  header hgroup {
+    width: 100%;
   }
 }
 @media only screen 
@@ -920,12 +951,7 @@ and (max-width : 650px) {
     padding: 1.5rem .5rem;
   }
 }
-@media only screen 
-and (max-width : 600px) {
-  header #brand {
-    text-align:left;
-  }
-}
+
 @media only screen 
 and (max-width : 480px) {
   .container{

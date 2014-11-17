@@ -41,6 +41,23 @@
   <div id="primary">
     <div id="content" role="main">
 
+    <!-- Page Title -->
+    <?php if( !is_front_page() ): ?>
+      <h2 class="title-page">
+        <?php 
+          if( is_single( $post )) {
+            $author_id = $post->post_author; 
+            echo "written by ".get_the_author_meta('display_name', $author_id);
+          } else if ( single_post_title( "",false ) ) {
+            single_post_title();
+          } else {
+            wp_title();
+          }
+        ?>
+      </h2>
+
+    <?php endif; ?>
+
 <?php
   /*-----------------------------------------------------------------------------------*/
   /* Start Home loop
@@ -61,6 +78,7 @@
               </h3>
               
             <div class="the-content clearfix">
+
               <!-- 
                 Work Repeater Field 
               -->
@@ -97,7 +115,9 @@
 
                   <?php else : ?>
 
-                    <?php the_post_thumbnail( $size, $attr ); ?> 
+                    <a href="<?php the_permalink() ?>">
+                      <?php the_post_thumbnail( $size, $attr ); ?>
+                    </a>
 
                   <?php endif; ?> <!-- if format END -->
                   
@@ -245,11 +265,7 @@
   /*-----------------------------------------------------------------------------------*/
 ?>
 
-<footer class="site-footer" role="contentinfo">
-  <div class="site-info container">
-    
-  </div><!-- .site-info -->
-</footer><!-- #colophon .site-footer -->
+<?php get_footer(); ?>
 
 <?php wp_footer(); ?>
 

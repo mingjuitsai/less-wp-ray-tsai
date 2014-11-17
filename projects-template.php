@@ -98,15 +98,21 @@
                             $video_id = 'video-'.get_the_ID();
                           ?>
                         <div class="wrap-sec">
-                          <section class="header-sec">
+                          <div class="header-sec">
                             <span class="circle"></span><span class="circle"></span><span class="circle"></span>
-                          </section>
+                          </div>
                           <!-- If desktop display video -->
-                          <video id="<?php echo $video_id; ?>" class="the-content-video extend-box" poster="<?php echo $img; ?>" width="" height="auto">
-                            <source src="<?php echo $file1; ?>" type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' />
-                            <source src="<?php echo $file2; ?>" type='video/webm;codecs="vp8, vorbis"' />
-                            <source src="<?php echo $file3; ?>" type="video/ogg; codecs=theora,vorbis" />
-                            <img class="the-content-img extend-box" src="<?php echo $img; ?>">
+                          <video id="<?php echo $video_id; ?>" class="the-content-video extend-box" poster="<?php echo $img; ?>">
+                            <?php if($file1): ?>
+                              <source src="<?php echo $file1; ?>" type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' />
+                            <?php endif; ?>
+                            <?php if($file2): ?>
+                              <source src="<?php echo $file2; ?>" type='video/webm;codecs="vp8, vorbis"' />
+                            <?php endif; ?>
+                            <?php if($file3): ?>
+                              <source src="<?php echo $file3; ?>" type="video/ogg; codecs=theora,vorbis" />
+                            <?php endif; ?>
+                            <img class="the-content-img extend-box" src="<?php echo $img; ?>" alt="<?php the_title(); ?>">
                           </video>
                       </div>                    
                       <?php endwhile; ?>
@@ -115,14 +121,14 @@
               
               <div class="the-content-text extend-box">
 
-                <section class="the-content-summary"> <?php  if ( has_excerpt() ) { the_excerpt(); } ?> </section>
-                <section class="the-content-desc"><?php the_content( 'More' ); ?></section>
+                <div class="the-content-summary"> <?php  if ( has_excerpt() ) { the_excerpt(); } ?> </div>
+                <div class="the-content-desc"><?php the_content( 'More' ); ?></div>
                 <!-- tags list -->
-                <ul class="list-block list-tags">
+                <div class="list-block list-tags">
                   <?php
                     echo get_the_tag_list(); 
                   ?> 
-                </ul>
+                </div>
               </div>
 
               <?php wp_link_pages(); ?>

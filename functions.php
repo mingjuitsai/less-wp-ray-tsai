@@ -32,26 +32,37 @@ register_nav_menus(
 
 function less_scripts()  { 
 
-	// add jQeury
+	// change default hooked scripts
 	wp_deregister_script('jquery');
 	wp_register_script('raytsai-jquery', "//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js",array(), LESS_VERSION, true);
 	wp_enqueue_script('raytsai-jquery');
-	// plugin js 
-	wp_enqueue_script( 'less-plugin', get_template_directory_uri() . '/js/plugin.js?defer', array(), LESS_VERSION, true );
-	// add theme scripts
-	wp_enqueue_script( 'less', get_template_directory_uri() . '/js/theme.min.js?defer', array(), LESS_VERSION, true );	
-}
-
-function wp_enqueue_footer() {
-
+	// media js 
+	wp_deregister_script('mediaelement');
+	wp_register_script('cdn-mediaelement', "//cdnjs.cloudflare.com/ajax/libs/mediaelement/2.13.2/js/mediaelement-and-player.min.js", array(), LESS_VERSION, true);
+	wp_enqueue_script('cdn-mediaelement');
+	// wp media element 
+	wp_deregister_script('wp-mediaelement');
+	wp_register_script('raytsai-wp-mediaelement', "http://ray-tsai.com/wp-includes/js/mediaelement/wp-mediaelement.js", array(), LESS_VERSION, true);
+	wp_enqueue_script('raytsai-wp-mediaelement');
+	
 	// font awesome
 	wp_enqueue_style( 'fontawesome-style','//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', array(), '1.0.0', 'all' );
 	// theme styles
 	wp_enqueue_style( 'less-style', get_template_directory_uri() . '/style.css', array(), '1.0.0', 'all' );
+
+	// plugin js 
+	wp_enqueue_script( 'less-plugin', get_template_directory_uri() . '/js/plugin.js', array(), LESS_VERSION, true );
+	wp_enqueue_script( 'theme-plugin', get_template_directory_uri() . '/js/theme.min.js', array(), LESS_VERSION, true );
+	
+	// add theme scripts
+	wp_enqueue_script( 'less', $aws_themeJS, array(), LESS_VERSION, true );	
 }
 
-add_action( 'wp_enqueue_scripts', 'less_scripts' );
-add_action( 'wp_footer', 'wp_enqueue_footer', 5 );
+function wp_enqueue_footer() {
+}
+
+add_action( 'wp_enqueue_scripts', 'less_scripts');
+//add_action( 'wp_footer', 'wp_enqueue_footer', 5 );
 
 /*
   defer javascript loading

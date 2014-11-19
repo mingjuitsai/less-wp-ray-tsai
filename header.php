@@ -9,6 +9,7 @@
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
 <meta name="viewport" content="width=device-width" />
+<meta name="Description" content="Web Developer and Web Designer Ray Tsai's portfolio website and blog. He has passion for building minimal, meaningful, and usable websites, also he loves basketball and traveling.">
 <meta property="og:title" content="<?php bloginfo('name'); ?> | <?php if( is_front_page() ) : echo bloginfo( 'description' ); endif; ?><?php wp_title( '', true,'right'); ?>"/>
 <meta property="og:type" content="website" /> 
 <meta property="og:url" content="<?php echo get_permalink(); ?>"/>

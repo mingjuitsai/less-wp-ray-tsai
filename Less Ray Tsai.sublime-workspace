@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"text",
+				"text-decoration"
+			],
+			[
+				"pad",
+				"padding"
+			],
+			[
+				"hid",
+				"hidden"
+			],
+			[
 				"cur",
 				"cursor"
 			],
@@ -24,18 +36,10 @@
 	"buffers":
 	[
 		{
-			"file": "functions.php",
-			"settings":
-			{
-				"buffer_size": 3102,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "header.php",
 			"settings":
 			{
-				"buffer_size": 1046,
+				"buffer_size": 1521,
 				"line_ending": "Windows"
 			}
 		},
@@ -48,42 +52,34 @@
 			}
 		},
 		{
-			"file": "index.php",
+			"file": "/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/js/custom-nopreloader.js",
 			"settings":
 			{
-				"buffer_size": 8132,
-				"line_ending": "Windows"
+				"buffer_size": 8061,
+				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "projects-template.php",
+			"file": "/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/js/custom-nopreloader-min.js",
 			"settings":
 			{
-				"buffer_size": 5756,
-				"line_ending": "Windows"
+				"buffer_size": 3674,
+				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "js/theme.min.js",
+			"file": "/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/homepage-template.php",
 			"settings":
 			{
-				"buffer_size": 997,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "style.css",
-			"settings":
-			{
-				"buffer_size": 18479,
-				"line_ending": "Windows"
+				"buffer_size": 4983,
+				"line_ending": "Unix"
 			}
 		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 392.0,
+		"height": 357.0,
 		"selected_items":
 		[
 			[
@@ -148,11 +144,38 @@
 	],
 	"file_history":
 	[
+		"/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/functions.php",
+		"/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/css/plugins.css",
+		"/C/xampp/htdocs/x-files/Less/functions.php",
+		"/C/Users/Ray Tsai/AppData/Local/Temp/fz3temp-1/single.php",
+		"/C/Users/Ray Tsai/AppData/Local/Temp/fz3temp-1/functions.php",
+		"/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/homepage-template.php",
+		"/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/js/custom-js.php",
+		"/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/js/appear.js",
+		"/C/xampp/htdocs/x-files/Less/index.php",
+		"/C/xampp/htdocs/x-files/Less/js/theme.min.js",
+		"/C/xampp/htdocs/x-files/Less/style.css",
+		"/C/xampp/htdocs/x-files/starky/homepage-template.php",
+		"/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/header/video.php",
+		"/C/xampp/htdocs/x-files/Less/projects-template.php",
+		"/C/Users/Ray Tsai/AppData/Local/Temp/fz3temp-1/wp-config.php",
+		"/C/Users/Ray Tsai/Desktop/robot.tx",
+		"/C/Users/Ray Tsai/Desktop/sitemap.xml",
+		"/C/xampp/htdocs/x-files/Less/js/plugin.js",
+		"/C/Users/Ray Tsai/AppData/Local/Temp/fz3temp-1/media-template.php",
+		"/C/xampp/htdocs/x-files/Less/post.php",
+		"/C/xampp/htdocs/x-files/community-finance/wp-content/themes/community-finance/functions.php",
+		"/C/xampp/htdocs/x-files/starky/header.php",
+		"/C/xampp/htdocs/x-files/starky/header/video.php",
+		"/C/xampp/htdocs/x-files/starky/index.php",
+		"/C/xampp/htdocs/x-files/starky/js/waypoints.min.js",
+		"/C/xampp/htdocs/x-files/starky/functions.php",
+		"/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/js/custom-nopreloader.js",
+		"/C/xampp/htdocs/x-files/Less/footer.php",
+		"/C/xampp/htdocs/x-files/Less/header - 複製.php",
 		"/C/xampp/htdocs/x-files/community-finance/wp-content/themes/community-finance/page-slider.php",
 		"/C/xampp/htdocs/x-files/community-finance/wp-content/themes/community-finance/index.php",
 		"/C/xampp/htdocs/x-files/Less/blog-template.php",
-		"/C/xampp/htdocs/x-files/Less/style.css",
-		"/C/xampp/htdocs/x-files/community-finance/wp-content/themes/community-finance/functions.php",
 		"/E/xampp/htdocs/projects/raytsaiwp/wp-content/themes/ray-tsai/index.php",
 		"/E/xampp/htdocs/projects/raytsaiwp/wp-content/themes/ray-tsai/functions.php",
 		"/E/xampp/htdocs/projects/bbbwp/wp-content/themes/blondblackblonde/single.php",
@@ -248,31 +271,7 @@
 		"/E/xampp/htdocs/projects/pingyingbento/site/snippets/pingying/header.php",
 		"/E/xampp/htdocs/projects/pingyingbento/site/config/config.php",
 		"/E/xampp/htdocs/projects/pingyingbento/site/panel/config/config.php",
-		"/C/Users/Roy/Desktop/Create/Projects/AFL 9s Cheese/index.html",
-		"/E/xampp/htdocs/projects/pingyingbento/panel/index.php",
-		"/C/Users/Roy/AppData/Local/Temp/fz3temp-1/index.php",
-		"/C/Users/Roy/AppData/Local/Temp/fz3temp-1/rtsai.yaml",
-		"/E/xampp/htdocs/projects/pingyingbento/index.php",
-		"/E/xampp/htdocs/projects/pingyingbento/panel/templates/info.php",
-		"/E/xampp/htdocs/projects/pingyingbento/panel/templates/preview.php",
-		"/E/xampp/htdocs/projects/pingyingbento/panel/defaults/config/config.php",
-		"/E/xampp/htdocs/projects/pingyingbento/panel/defaults/blueprints/default.php",
-		"/E/xampp/htdocs/projects/pingyingbento/panel/defaults/accounts/admin.php",
-		"/E/xampp/htdocs/xampp/biorhythm.php",
-		"/E/xampp/htdocs/projects/pingyingbento/kirby/defaults.php",
-		"/E/xampp/htdocs/projects/pingyingbento/kirby/system.php",
-		"/E/xampp/htdocs/index.php",
-		"/E/xampp/htdocs/projects/pingyingbento/panel/snippets/header.php",
-		"/E/xampp/htdocs/projects/statamic/_config/settings.yaml",
-		"/E/xampp/htdocs/projects/statamic/_config/users/admin.yaml",
-		"/E/xampp/htdocs/projects/pingyingbento/site/panel/accounts/rtsai.php",
-		"/C/Users/Roy/AppData/Local/Temp/fz3temp-1/default.php",
-		"/C/Users/Roy/AppData/Local/Temp/fz3temp-1/styles.css",
-		"/C/Users/Roy/AppData/Local/Temp/fz3temp-1/header.php",
-		"/C/Users/Roy/AppData/Local/Temp/fz3temp-1/pingying_header.php",
-		"/C/Users/Roy/AppData/Local/Temp/fz3temp-1/admin.php",
-		"/C/Users/Roy/Desktop/Create/Projects/Dominic Dowling/DominicDowling 21 August - Copy/functions.php",
-		"/C/Users/Roy/AppData/Local/Temp/fz3temp-1/config.php"
+		"/C/Users/Roy/Desktop/Create/Projects/AFL 9s Cheese/index.html"
 	],
 	"find":
 	{
@@ -290,6 +289,48 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"data-animated",
+			"1.0",
+			"work",
+			"str_second_section",
+			"animate",
+			"str_data_type",
+			"animate",
+			"menu",
+			"header",
+			"section",
+			"list-block ",
+			"ul",
+			"list-block",
+			"ul",
+			"list-block",
+			"div",
+			"ul",
+			"list-block",
+			"blog",
+			"example.com",
+			"www.example.com",
+			"examplebucket",
+			"?defer",
+			"audio",
+			"$i",
+			"video",
+			"$i",
+			"section",
+			"data-scroll-nav",
+			"data",
+			"scroll",
+			"is_front_page",
+			"h1",
+			"header nav",
+			"list-bl",
+			"div",
+			"h4",
+			"</span>",
+			"<span>",
+			" style=\"color: #000000;\"",
+			"cursor",
+			"list-cat",
 			"$img",
 			"-vid",
 			"wrap-vid",
@@ -333,68 +374,39 @@
 	"groups":
 	[
 		{
-			"selected": 6,
+			"selected": 4,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "functions.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3102,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								606,
-								606
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "header.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1046,
+						"buffer_size": 1521,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								196,
-								196
+								566,
+								566
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/PHP/PHP.tmLanguage"
 						},
-						"translation.x": 0.0,
+						"translation.x": 480.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 1,
 					"semi_transient": false,
 					"settings":
 					{
@@ -416,93 +428,64 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1201.0,
+						"translation.y": 79.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "index.php",
+					"buffer": 2,
+					"file": "/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/js/custom-nopreloader.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8132,
+						"buffer_size": 8061,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2722,
-								2722
+								0,
+								8061
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1384.0,
+						"translation.y": 153.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "projects-template.php",
+					"buffer": 3,
+					"file": "/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/js/custom-nopreloader-min.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5756,
+						"buffer_size": 3674,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4116,
-								4116
+								3674,
+								3674
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
-						"translation.x": 0.0,
-						"translation.y": 1957.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "js/theme.min.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 997,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								742,
-								742
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
+						"translation.x": 770.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
@@ -510,30 +493,29 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "style.css",
+					"buffer": 4,
+					"file": "/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/homepage-template.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 18479,
+						"buffer_size": 4983,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								17396,
-								17396
+								1334,
+								1334
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 2,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 18311.0,
+						"translation.y": 711.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,

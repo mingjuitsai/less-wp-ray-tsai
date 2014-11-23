@@ -47,7 +47,7 @@
         <?php 
           if( is_single( $post )) {
             $author_id = $post->post_author; 
-            echo "written by ".get_the_author_meta('display_name', $author_id);
+            echo get_the_time("g:i a d/m/Y")." by ".get_the_author_meta('display_name', $author_id);
           } else if ( single_post_title( "",false ) ) {
             single_post_title();
           } else {

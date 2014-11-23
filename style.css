@@ -630,7 +630,7 @@ article {
   font-size: 1.45rem;
   line-height: 2.1rem;
 }
-.the-content blockquote{
+.the-content .col-1-2{
 font-family: FontAwesome,"lft-etica","Segoe UI", Optima, sans-serif;
 -moz-osx-font-smoothing: grayscale;
 font-style: normal;
@@ -725,6 +725,7 @@ background: rgb(215, 55, 128);
   color:rgb(66, 47, 73);
 }
 
+
 /* Single Post */
 .single-post .title {
   font-size: 3rem;
@@ -735,6 +736,7 @@ background: rgb(215, 55, 128);
 .single-post .meta {
   margin: 6.2rem 0;
 }
+
 
 /* 
   video 
@@ -777,10 +779,12 @@ video{
   cursor: url("img/icon_play.png"), auto;
 }
 
-/* audio */
+/* 
+  audio 
+*/
 .mejs-container {
   margin-bottom: 1.55rem;
-} 
+}
 
 /* Page loop styling */
 .page article {
@@ -969,7 +973,7 @@ and (max-width : 480px) {
   .the-content-text{
     padding: 1.5rem 1rem;
   }
-  .the-content blockquote{
+  .the-content .col-1-2{
     width: 100%;
   }
 

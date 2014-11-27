@@ -372,6 +372,11 @@ h4 {
   line-height: 2.6rem;
   margin-bottom: 1.55rem;
 }
+h5 {
+  font-size: 1.54rem;
+  line-height: 2.4rem;
+  margin-bottom: 1.55rem;
+}
 hr {
   background-color: #ccc;
   border: 0;
@@ -601,10 +606,8 @@ header nav ul > li:hover a {
 article {
   background: transparent;
   padding: 0;
-  margin-bottom: 3rem;
+  margin-bottom: 6rem;
   letter-spacing: 0.068rem;
-  display: inline-block;
-  vertical-align: text-top;
 }
 .title {
   color: #404040;
@@ -624,6 +627,7 @@ article {
 .the-content img {
   width: 100%;
   height: auto;
+  display: block;
 }
 .the-content p {
   color: #515151;
@@ -672,8 +676,9 @@ float: left;
   text-decoration: none;
 }
 .the-content-desc{
-
 }
+
+/* list block */
 .list-block {
   list-style: none;
   text-transform: uppercase;
@@ -701,6 +706,16 @@ float: left;
   color: rgb(250, 242, 255);
   border-color: white;
 }
+.list-cats > ul {
+  margin:0;
+  padding: 0;
+  list-style: none;
+}
+.list-cats > ul > li {
+  margin:0;
+  padding: 0;
+}
+
 .list-cats a {
 }
 .list-cats a:hover {
@@ -711,8 +726,8 @@ background: rgb(215, 55, 128);
   text-transform:lowercase;
 }
 
-/* Blog */
-.blog .date {
+/* Post / Blog */
+.post .date {
   font-size: 1.1rem;
   color: rgb(55, 55, 55);
   line-height: normal;
@@ -721,7 +736,7 @@ background: rgb(215, 55, 128);
   cursor: default;
 }
 
-.blog .title a{
+.post .title a{
   color:rgb(66, 47, 73);
 }
 
@@ -732,11 +747,16 @@ background: rgb(215, 55, 128);
   line-height: 3.4rem;
   margin-bottom: 3.1rem;
   text-align: center;
+  text-transform: none;
 }
 .single-post .meta {
   margin: 6.2rem 0;
 }
-
+.single-post iframe {
+  min-width: 100%;
+  max-width: 100%;
+  height: 
+}
 
 /* 
   video 

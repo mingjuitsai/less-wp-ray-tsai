@@ -78,7 +78,7 @@
           <article class="post project">
 
               <h3 class="title">
-                <a target="_blank" href="<?php $object_url = get_field('object_url'); echo $object_url; ?>" title="<?php the_title(); ?>">
+                <a href="<?php the_permalink() ?>" title="<?php the_title(); ?>">
                   <?php the_title() ?>
                 </a>
               </h3>
@@ -127,7 +127,7 @@
               <div class="the-content-text extend-box">
 
                 <div class="the-content-summary"> <?php  if ( has_excerpt() ) { the_excerpt(); } ?> </div>
-                <div class="the-content-desc"><?php the_content( 'More' ); ?></div>
+                <div class="the-content-desc"><?php global $more; $more =0; the_content(); ?></div>
                 <!-- tags list -->
                 <div class="list-block list-tags">
                   <?php

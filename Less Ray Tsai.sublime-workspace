@@ -44,35 +44,35 @@
 			}
 		},
 		{
-			"contents": "<!DOCTYPE html>\n<html <?php language_attributes(); ?>>\n  <head>\n    <!-- Header -->\n    <?php get_header(); ?>\n  <?php wp_head(); ?>\n  </head>\n<body <?php body_class(); ?>>\n\n\n<?php\n  /*-----------------------------------------------------------------------------------*/\n  /* Start header\n  /*-----------------------------------------------------------------------------------*/\n?>\n<header id=\"masthead\" class=\"site-header\" role=\"banner\">\n  <div class=\"container header-wrap\">\n    \n    <div id=\"brand\">\n      <section class=\"site-title\">\n        <a href=\"<?php echo esc_url( home_url( '/' ) ); ?>\" title=\"<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>\" rel=\"home\">\n        <?php bloginfo( 'name' ); ?></a> \n        \n      </section>\n    </div><!-- /brand -->\n\n    <!-- <div class=\"desc\">\n      <?php //echo get_bloginfo( 'description' ); ?>\n    </div> -->\n  \n    <nav role=\"navigation\" class=\"site-navigation main-navigation\">\n      <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>\n    </nav><!-- .site-navigation .main-navigation -->\n    \n  </div><!--/container -->\n    \n</header><!-- #masthead .site-header -->\n\n<div class=\"container main-content\">\n\n  <div id=\"primary\">\n    <div id=\"content\" role=\"main\">\n\n<?php\n  /*-----------------------------------------------------------------------------------*/\n  /* Start Home loop\n  /*-----------------------------------------------------------------------------------*/\n  \n  if( is_home() || is_archive() ) {\n  \n?>\n      <?php if ( have_posts() ) : ?>\n\n        <?php while ( have_posts() ) : the_post(); ?>\n\n          <article class=\"post\">\n              <h3 class=\"title\">\n                <a target=\"_blank\" href=\"<?php $object_url = get_field('object_url'); echo $object_url; ?>\" title=\"<?php the_title(); ?>\">\n                  <?php the_title() ?>\n                </a>\n              </h3>\n              \n\n            <div class=\"the-content clearfix\">\n              <!-- \n                Work Repeater Field \n              -->\n              <section class=\"the-content-work extend-box\">\n                <?php if( have_rows('repeater_video') ): ?>\n                    <?php while( have_rows('repeater_video') ): the_row(); ?>\n                        <?php \n                          $file1 = get_sub_field('object_file_mp4');\n                          $file2 = get_sub_field('object_file_webm');\n                          $file3 = get_sub_field('object_file_ogg');\n                          $img  = get_sub_field('object_img'); \n                          $video_id = 'video-'.get_the_id();\n                        ?>\n                        <div class=\"wrap-vid\">\n                      <section class=\"header-vid\">\n                        <span class=\"circle\"></span><span class=\"circle\"></span><span class=\"circle\"></span>\n                      </section>\n                      <!-- If destop display video -->\n                            <video id=\"<?php echo $video_id; ?>\" class=\"the-content-video extend-box\" poster=\"<?php echo $img; ?>\" width=\"\" height=\"auto\">\n                          <source src=\"<?php echo $file1; ?>\" type='video/mp4;codecs=\"avc1.42E01E, mp4a.40.2\"' />\n                          <source src=\"<?php echo $file2; ?>\" type='video/webm;codecs=\"vp8, vorbis\"' />\n                          <source src=\"<?php echo $file3; ?>\" type=\"video/ogg; codecs=theora,vorbis\" />\n                          <img class=\"the-content-img extend-box\" src=\"<?php echo $img; ?>\">\n                        </video>\n                        \n                    </div>                    \n                    <?php endwhile; ?>\n                <?php endif; ?>\n              </section>\n              <!-- Work Repeater Field END -->\n\n              <div class=\"the-content-text extend-box\">\n\n                <section class=\"the-content-summary\"><?php $summary = get_field('summary'); echo $summary; ?></section>\n                <section class=\"the-content-desc\"><?php the_content( 'Continue...' ); ?></section>\n                <!-- cat list -->\n                <ul class=\"list-cat\">\n                  <?php\n                    echo get_the_category_list(); \n                  ?> \n                </ul>\n              </div>\n              \n              \n              <?php wp_link_pages(); ?>\n            </div><!-- the-content -->\n\n          </article>\n\n        <?php endwhile; ?>\n        \n        <!-- pagintation -->\n        <div id=\"pagination\" class=\"clearfix\">\n          <div class=\"past-page\"><?php previous_posts_link( 'Newer &raquo;' ); ?></div>\n          <div class=\"next-page\"><?php next_posts_link( ' &laquo; Older' ); ?></div>\n        </div><!-- pagination -->\n\n\n      <?php else : ?>\n        \n        <article class=\"post error\">\n          <h1 class=\"404\">Nothing posted yet</h1>\n        </article>\n\n      <?php endif; ?>\n\n    \n  <?php } //end is_home(); ?>\n\n<?php\n  /*-----------------------------------------------------------------------------------*/\n  /* Start Single loop\n  /*-----------------------------------------------------------------------------------*/\n  \n  if( is_single() ) {\n?>\n      <?php if ( have_posts() ) : ?>\n\n        <?php while ( have_posts() ) : the_post(); ?>\n\n          <article class=\"post\">\n\n            <h1 class=\"title\"><?php the_title() ?></h1>\n            <div class=\"post-meta\">\n              <?php if( comments_open() ) : ?>\n                <span class=\"comments-link\">\n                  <?php comments_popup_link( __( 'Comment', 'less' ), __( '1 Comment', 'less' ), __( '% Comments', 'less' ) ); ?>\n                </span>\n              <?php endif; ?>\n            \n            </div><!--/post-meta -->\n            \n            <div class=\"the-content\">\n              <?php the_content( 'Continue...' ); ?>\n              \n              <?php wp_link_pages(); ?>\n            </div><!-- the-content -->\n            \n            <div class=\"meta clearfix\">\n              <div class=\"category\"><?php echo get_the_category_list(get_the_ID()); ?></div>\n              <div class=\"tags\"><?php echo get_the_tag_list( '| &nbsp;', '&nbsp;' ); ?></div>\n            </div><!-- Meta -->           \n          </article>\n\n        <?php endwhile; ?>\n        \n        <?php\n          // If comments are open or we have at least one comment, load up the comment template\n          if ( comments_open() || '0' != get_comments_number() )\n            comments_template( '', true );\n        ?>\n\n\n      <?php else : ?>\n        \n        <article class=\"post error\">\n          <h1 class=\"404\">Nothing posted yet</h1>\n        </article>\n\n      <?php endif; ?>\n  <?php } //end is_single(); ?>\n  \n<?php\n  /*-----------------------------------------------------------------------------------*/\n  /* Start Page loop\n  /*-----------------------------------------------------------------------------------*/\n  \n  if( is_page()) {\n?>\n\n      <?php if ( have_posts() ) : ?>\n\n        <?php while ( have_posts() ) : the_post(); ?>\n\n          <article class=\"post\">\n            \n            <!-- <h1 class=\"title\"><?php the_title() ?></h1> -->\n            <div class=\"the-content\">\n              <?php the_content(); ?>\n              \n              <?php wp_link_pages(); ?>\n            </div><!-- the-content -->\n            \n          </article>\n\n        <?php endwhile; ?>\n\n      <?php else : ?>\n        \n        <article class=\"post error\">\n          <h1 class=\"404\">Nothing posted yet</h1>\n        </article>\n\n      <?php endif; ?>\n\n  <?php } // end is_page(); ?>\n\n    </div><!-- #content .site-content -->\n  </div><!-- #primary .content-area -->\n\n</div><!-- / container-->\n\n<?php\n  /*-----------------------------------------------------------------------------------*/\n  /* Start Footer\n  /*-----------------------------------------------------------------------------------*/\n?>\n\n<footer class=\"site-footer\" role=\"contentinfo\">\n  <div class=\"site-info container\">\n    \n  </div><!-- .site-info -->\n</footer><!-- #colophon .site-footer -->\n\n<?php wp_footer(); ?>\n\n</body>\n</html>\n",
+			"file": "functions.php",
 			"settings":
 			{
-				"buffer_size": 7973,
+				"buffer_size": 4946,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/js/custom-nopreloader.js",
+			"file": "js/theme.min.js",
 			"settings":
 			{
-				"buffer_size": 8061,
-				"line_ending": "Unix"
+				"buffer_size": 1093,
+				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/js/custom-nopreloader-min.js",
+			"file": "index.php",
 			"settings":
 			{
-				"buffer_size": 3674,
-				"line_ending": "Unix"
+				"buffer_size": 9025,
+				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/homepage-template.php",
+			"file": "style.css",
 			"settings":
 			{
-				"buffer_size": 4983,
-				"line_ending": "Unix"
+				"buffer_size": 19363,
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -144,17 +144,22 @@
 	],
 	"file_history":
 	[
+		"/C/xampp/htdocs/x-files/Less/style.css",
+		"/C/xampp/htdocs/x-files/canadian-brunswick-fish/index.html",
+		"/C/xampp/htdocs/x-files/canadian-brunswick-fish/style.css",
+		"/C/xampp/htdocs/x-files/canadian-brunswick-fish/css/animate.min.css",
+		"/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/js/custom-nopreloader.js",
+		"/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/js/custom-nopreloader-min.js",
+		"/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/homepage-template.php",
+		"/C/xampp/htdocs/x-files/Less/index.php",
+		"/C/xampp/htdocs/x-files/Less/functions.php",
 		"/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/functions.php",
 		"/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/css/plugins.css",
-		"/C/xampp/htdocs/x-files/Less/functions.php",
 		"/C/Users/Ray Tsai/AppData/Local/Temp/fz3temp-1/single.php",
 		"/C/Users/Ray Tsai/AppData/Local/Temp/fz3temp-1/functions.php",
-		"/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/homepage-template.php",
 		"/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/js/custom-js.php",
 		"/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/js/appear.js",
-		"/C/xampp/htdocs/x-files/Less/index.php",
 		"/C/xampp/htdocs/x-files/Less/js/theme.min.js",
-		"/C/xampp/htdocs/x-files/Less/style.css",
 		"/C/xampp/htdocs/x-files/starky/homepage-template.php",
 		"/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/header/video.php",
 		"/C/xampp/htdocs/x-files/Less/projects-template.php",
@@ -170,7 +175,6 @@
 		"/C/xampp/htdocs/x-files/starky/index.php",
 		"/C/xampp/htdocs/x-files/starky/js/waypoints.min.js",
 		"/C/xampp/htdocs/x-files/starky/functions.php",
-		"/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/js/custom-nopreloader.js",
 		"/C/xampp/htdocs/x-files/Less/footer.php",
 		"/C/xampp/htdocs/x-files/Less/header - 複製.php",
 		"/C/xampp/htdocs/x-files/community-finance/wp-content/themes/community-finance/page-slider.php",
@@ -267,11 +271,7 @@
 		"/E/xampp/htdocs/projects/pingyingbento/site/panel/blueprints/default.php",
 		"/E/xampp/htdocs/projects/pingyingbento/site/templates/pingyingbento.php",
 		"/E/xampp/htdocs/projects/pingyingbento/site/templates/pingyingbento.html",
-		"/E/xampp/htdocs/projects/pingyingbento/site/snippets/header.php",
-		"/E/xampp/htdocs/projects/pingyingbento/site/snippets/pingying/header.php",
-		"/E/xampp/htdocs/projects/pingyingbento/site/config/config.php",
-		"/E/xampp/htdocs/projects/pingyingbento/site/panel/config/config.php",
-		"/C/Users/Roy/Desktop/Create/Projects/AFL 9s Cheese/index.html"
+		"/E/xampp/htdocs/projects/pingyingbento/site/snippets/header.php"
 	],
 	"find":
 	{
@@ -289,6 +289,65 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"article",
+			".the-content img",
+			"fadeInUp_RotateUp",
+			"translate3d(0, 100%, 0) ",
+			"20%",
+			");",
+			"X",
+			"translateX",
+			"cubic-bezier(0.455, 0.030, 0.515, 0.955)",
+			"2s",
+			"7deg",
+			"20deg",
+			"fadeInUp",
+			"swimInRight",
+			"none",
+			"fadeInUp",
+			"2.1s",
+			".1",
+			", rotateUp 3s ease;",
+			".2s ",
+			"translateX(-50%);",
+			"translateX(0%)",
+			"swimInRight",
+			"cubic-bezier(0.470, 0.000, 0.745, 0.715);",
+			"2s",
+			"cubic-bezier(0.865, 0.080, 0.280, 0.880); ",
+			"3.6s",
+			"5.6s",
+			"cubic-bezier(0.165, 0.840, 0.440, 1.000); ;",
+			"3.6s",
+			"ease",
+			"4s",
+			"fadeInUp",
+			"cubic-bezier(0.785, 0.135, 0.150, 0.860); ",
+			"2.5",
+			", swing 1s;",
+			", swing 1s",
+			"s;",
+			"fadeInUp 2.5s, ",
+			"1s;",
+			". ",
+			".",
+			";",
+			"3s",
+			"5s",
+			"2s",
+			".1s ",
+			".5s;",
+			".5",
+			", bounce 1s",
+			"fadeIn",
+			"article",
+			"wp_enqueue_footer",
+			"mediaelement",
+			"raytsai",
+			"h4",
+			"single",
+			"col-1-2",
+			"blockquote",
 			"data-animated",
 			"1.0",
 			"work",
@@ -390,75 +449,73 @@
 						"selection":
 						[
 							[
-								566,
-								566
+								823,
+								823
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/PHP/PHP.tmLanguage"
 						},
-						"translation.x": 480.0,
+						"translation.x": 170.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7973,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2272,
-								2272
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 79.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/js/custom-nopreloader.js",
+					"buffer": 1,
+					"file": "functions.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8061,
+						"buffer_size": 4946,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								8061
+								1418,
+								1418
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 717.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "js/theme.min.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1093,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								144,
+								144
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 153.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
@@ -466,27 +523,29 @@
 				},
 				{
 					"buffer": 3,
-					"file": "/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/js/custom-nopreloader-min.js",
+					"file": "index.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3674,
+						"buffer_size": 9025,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3674,
-								3674
+								7120,
+								7141
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 770.0,
-						"translation.y": 0.0,
+						"translation.x": 0.0,
+						"translation.y": 4124.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -494,28 +553,29 @@
 				},
 				{
 					"buffer": 4,
-					"file": "/C/xampp/htdocs/x-files/bright-circle-wordpress-theme/homepage-template.php",
+					"file": "style.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4983,
+						"buffer_size": 19363,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1334,
-								1334
+								14711,
+								14723
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 711.0,
+						"translation.y": 15187.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -624,7 +684,7 @@
 		[
 			[
 				"",
-				"C:\\Users\\Roy\\Desktop\\Create\\Projects\\blondblackblond\\BlondBlackBlond.sublime-project"
+				"C:\\xampp\\htdocs\\x-files\\brunswick-fish\\Brunswich Fish Bwired.sublime-workspace"
 			]
 		],
 		"width": 380.0

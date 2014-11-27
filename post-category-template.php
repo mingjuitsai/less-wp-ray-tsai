@@ -1,3 +1,8 @@
+<?php
+/*
+  Template Name: Post Category Template
+*/
+?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
   <head>
@@ -42,35 +47,48 @@
     <div id="content" role="main">
 
     <!-- Page Title -->
-    <?php if( !is_front_page() ): ?>
-      <h2 class="title-page">
-        <?php 
-          if( is_single( $post )) {
-            $author_id = $post->post_author; 
-            echo get_the_time("g:i a d/m/Y")." by ".get_the_author_meta('display_name', $author_id);
-          } else if ( single_post_title( "",false ) ) {
-            single_post_title();
-          } else {
-            wp_title();
-          }
-        ?>
-      </h2>
-
-    <?php endif; ?>
+    <h2 class="title-page">
+      <?php single_post_title();?>
+    </h2>
 
 <?php
   /*-----------------------------------------------------------------------------------*/
-  /* Start Home / Archive / Get Post Category / Loop 
+  /* Start Blog ( Post ) loop
   /*-----------------------------------------------------------------------------------*/
+  
+      // Query Post Category
+    
+        $page_object = get_queried_object();
+        $page_id     = get_queried_object_id();
+        $post_categories = get_post_meta($page_id, "get_post_category",true);
 
-  if( is_home() || is_archive() ) {
-?>
+        if ( $post_categories ) {
+          // Categories into Array
+          $post_categories_array = explode(",", $post_categories);
+
+          foreach ($post_categories_array as $key => $category) {
+            $cat_ID = get_cat_id( $category );
+            $post_categories_array[$key] = $cat_ID;
+          }
+          
+          $post_categories_IDs = implode(",", $post_categories_array);
+          $args = array(
+              'post_type'=> 'post',
+              'order'    => 'DESC',
+              'cat'      => $post_categories_IDs
+          );
+          query_posts( $args );
+        }
+      ?>
 
       <?php if ( have_posts() ) : ?>
 
         <?php while ( have_posts() ) : the_post(); ?>
+          
+          <?php $format = get_post_format( get_the_ID() ); ?>
 
-          <article class="post blog">
+          <article class="post">
+
               <h3 class="title">
                 <a href="<?php the_permalink() ?>" title="<?php the_title(); ?>">
                   <?php the_title() ?>
@@ -139,7 +157,7 @@
                   <?php the_date(); ?>
                 </h5>
                 <div class="the-content-summary"> <?php  if ( has_excerpt() ) { the_excerpt(); } ?> </div>
-                <div class="the-content-desc"><?php the_content(); ?></div>
+                <div class="the-content-desc"><?php global $more; $more =0; the_content(); ?></div>
                 <!-- cat list -->
                 <div class="list-block list-tags">
                   <?php
@@ -171,96 +189,6 @@
 
       <?php endif; ?>
 
-    
-  <?php } //end is_home(); ?>
-
-<?php
-  /*-----------------------------------------------------------------------------------*/
-  /* Start Single loop
-  /*-----------------------------------------------------------------------------------*/
-  
-  if( is_single() ) {
-?>
-      <?php if ( have_posts() ) : ?>
-
-        <?php while ( have_posts() ) : the_post(); ?>
-
-          <article class="post single-post">
-
-            <h3 class="title"><?php the_title() ?></h3>
-            <div class="post-meta">
-              <?php if( comments_open() ) : ?>
-                <span class="comments-link">
-                  <?php comments_popup_link( __( 'Comment', 'less' ), __( '1 Comment', 'less' ), __( '% Comments', 'less' ) ); ?>
-                </span>
-              <?php endif; ?>
-            
-            </div><!--/post-meta -->
-            
-            <div class="the-content">
-              <?php the_content( 'Continue...' ); ?>
-              
-              <?php wp_link_pages(); ?>
-            </div><!-- the-content -->
-            
-            <div class="meta clearfix">
-              <section class="list-block list-cats"><?php echo get_the_category_list(); ?></section>
-              <section class="list-block list-tags"><?php echo get_the_tag_list(); ?></section>
-            </div><!-- Meta -->           
-          </article>
-
-        <?php endwhile; ?>
-        
-        <?php
-          // If comments are open or we have at least one comment, load up the comment template
-          if ( comments_open() || '0' != get_comments_number() )
-            comments_template( '', true );
-        ?>
-
-
-      <?php else : ?>
-        
-        <article class="post error">
-          <h1 class="404">Nothing posted yet</h1>
-        </article>
-
-      <?php endif; ?>
-  <?php } //end is_single(); ?>
-  
-<?php
-  /*-----------------------------------------------------------------------------------*/
-  /* Start Page loop
-  /*-----------------------------------------------------------------------------------*/
-  
-  if( is_page()) {
-?>
-
-      <?php if ( have_posts() ) : ?>
-
-        <?php while ( have_posts() ) : the_post(); ?>
-
-          <article class="post">
-            
-            <!-- <h1 class="title"><?php the_title() ?></h1> -->
-            <div class="the-content">
-              <?php the_content(); ?>
-              
-              <?php wp_link_pages(); ?>
-            </div><!-- the-content -->
-            
-          </article>
-
-        <?php endwhile; ?>
-
-      <?php else : ?>
-        
-        <article class="post error">
-          <h1 class="404">Nothing posted yet</h1>
-        </article>
-
-      <?php endif; ?>
-
-  <?php } // end is_page(); ?>
 
     </div><!-- #content .site-content -->
   </div><!-- #primary .content-area -->
